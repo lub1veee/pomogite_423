@@ -53,10 +53,10 @@ class Program
                     RemoveProduct();
                     break;
                 case "3":
-                    //OrderSupply();
-                   // break;
+                    OrderSupply();
+                    break;
                 case "4":
-                    //SellProduct();
+                    SellProduct();
                     break;
                 case "5":
                     //SearchProducts();
@@ -177,6 +177,35 @@ class Program
         Console.WriteLine($"Все круто супер чудно, новое количество: {product.Quantity}");
     }
 
+    static void SellProduct()
+    {
+        Console.WriteLine("Продажа товара");
+        Console.WriteLine("Введите код товара:");
+        string code = Console.ReadLine(); 
+        var product = products.FirstOrDefault(p => p.Code == code);
+        if (product == null)
+        {
+            Console.WriteLine("Товара нет, гуляй");
+            return;
+        }
+
+        Console.WriteLine("Количество для продажи:");
+        if (!int.TryParse (Console.ReadLine(), out int quantity) || quantity <= 0)
+        {
+            Console.WriteLine("Та откуда такое количество, неверно");
+            return;
+        }
+
+        if (product.Quantity >= quantity)
+        {
+            product.Quantity -= quantity;
+            decimal total = product.Price * quantity;
+            Console.WriteLine($"Чудно, продано. Остаток: {product.Quantity}, Сумма: {total} руб.");
+        }
+        {
+            Console.WriteLine($"Недостаточно товара, доступно: {product.Quantity}");
+        }
+    }
 
 
 }
