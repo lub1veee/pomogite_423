@@ -50,7 +50,7 @@ class Program
                     AddProduct();
                     break;
                 case "2":
-                    //RemoveProduct();
+                    RemoveProduct();
                     break;
                 case "3":
                     //OrderSupply();
@@ -134,6 +134,24 @@ class Program
 
         products.Add(new Product { Code = code, Name = name, Price = price, Quantity = quantity, Category = category });
         Console.WriteLine($"Товар добавлен, код: {code}");
+    }
+
+    static void RemoveProduct()
+    {
+        Console.WriteLine("Удаление товара");
+        Console.Write("Введите код товара: ");
+        string code = Console.ReadLine();
+
+        var product = products.FirstOrDefault(p => p.Code == code);
+        if (product != null)
+        {
+            products.Remove(product);
+            Console.WriteLine("Товар удален!");
+        }
+        else
+        {
+            Console.WriteLine("Товар не найден!");
+        }
     }
 
 
