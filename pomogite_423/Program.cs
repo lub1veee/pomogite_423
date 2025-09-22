@@ -59,20 +59,20 @@ class Program
                     SellProduct();
                     break;
                 case "5":
-                    //SearchProducts();
+                    SearchProducts();
                     break;
                 case "6":
                     //ShowAllProducts();
                     break;
                 case "7":
-                    Console.WriteLine("Выход из программы...");
+                    Console.WriteLine("Выход из программы");
                     return;
                 default:
-                    Console.WriteLine("Неверный выбор!");
+                    Console.WriteLine("Кроме этого, ничего не может быть, ало, ты че");
                     break;
             }
 
-            Console.WriteLine("Нажмите Enter чтобы продолжить...");
+            Console.WriteLine("Продолжить");
             Console.ReadLine();
             Console.Clear();
         }
@@ -207,8 +207,65 @@ class Program
         }
     }
 
+    static void SearchProducts()
+    {
+        Console.WriteLine("Поиск товаров");
+        Console.WriteLine("1 - По коду");
+        Console.WriteLine("2 - По названию");
+        Console.WriteLine("3 - По категории");
+        Console.Write("Выберите тип поиска: ");
+
+        string choice = Console.ReadLine();
+        List<Product> results = new List<Product>();
+
+        switch (choice)
+        {
+            case "1":
+                Console.Write("Введите код: ");
+                string code = Console.ReadLine();
+                results = products.Where(p => p.Code == code).ToList();
+                break;
+
+            case "2":
+                Console.Write("Введите название: ");
+                string name = Console.ReadLine();
+                results = products.Where(p => p.Name.Contains(name, StringComparison.OrdinalIgnoreCase)).ToList();
+                break;
+
+            case "3":
+                Console.WriteLine("Категории: 0 - Электроника, 1 - Одежда, 2 - Еда, 3 - Книги, 4 - Учеба");
+                Console.Write("Выберите категорию: ");
+                if (int.TryParse(Console.ReadLine(), out int catNum) && catNum >= 0 && catNum <= 4)
+                {
+                    results = products.Where(p => p.Category == (Category)catNum).ToList();
+                }
+                break;
+
+            default:
+                Console.WriteLine("Нет, пока, неверно");
+                return;
+        }
+
+        if (results.Count > 0)
+        {
+            Console.WriteLine("Найдены товары:");
+            foreach (var product in results)
+            {
+                Console.WriteLine(product);
+            }
+        }
+        else
+        {
+            Console.WriteLine("Товары не найдены");
+        }
+    }
+
 
 }
+
+
+
+
 
 
 
