@@ -263,10 +263,10 @@ class Program
     }
     static void ShowAllProducts()
     {
-        Console.WriteLine("\n=== ВСЕ ТОВАРЫ ===");
+        Console.WriteLine("вСЕ ТОВАРЫ");
         if (products.Count == 0)
         {
-            Console.WriteLine("Товаров нет!");
+            Console.WriteLine("Товаров нет");
             return;
         }
 
@@ -275,6 +275,7 @@ class Program
             Console.WriteLine(product);
         }
     }
+    //4
 }
 
 
