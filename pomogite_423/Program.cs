@@ -14,7 +14,7 @@ public enum Category
     Одежда,
     Еда,
     Книги,
-    Спорт
+    Учеба
 }
 public class Product
 {
@@ -91,7 +91,14 @@ class Program
         Console.WriteLine("7. Выход");
         Console.Write("Выберите действие: ");
     }
-
+    static void AddTestProducts()
+    {
+        products.Add(new Product { Code = "11001", Name = "ПокоX3", Price = 1500, Quantity = 10, Category = Category.Электроника });
+        products.Add(new Product { Code = "11002", Name = "Митенки", Price = 500, Quantity = 50, Category = Category.Одежда });
+        products.Add(new Product { Code = "11003", Name = "Вкусный кофе, приготовленный мной", Price = 190, Quantity = 100, Category = Category.Еда });
+        products.Add(new Product { Code = "11004", Name = "Лето в пионерском галстуке", Price = 400000, Quantity = 25, Category = Category.Книги });
+        products.Add(new Product { Code = "11005", Name = "Книга по немецкому языку", Price = 1200, Quantity = 15, Category = Category.Учеба });
+    }
 
 
 
