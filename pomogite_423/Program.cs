@@ -37,7 +37,6 @@ class Program
 
     static void Main(string[] args)
     {
-        // Добавляем тестовые товары
         AddTestProducts();
 
         while (true)
@@ -51,19 +50,19 @@ class Program
                     AddProduct();
                     break;
                 case "2":
-                    RemoveProduct();
+                    //RemoveProduct();
                     break;
                 case "3":
-                    OrderSupply();
-                    break;
+                    //OrderSupply();
+                   // break;
                 case "4":
-                    SellProduct();
+                    //SellProduct();
                     break;
                 case "5":
-                    SearchProducts();
+                    //SearchProducts();
                     break;
                 case "6":
-                    ShowAllProducts();
+                    //ShowAllProducts();
                     break;
                 case "7":
                     Console.WriteLine("Выход из программы...");
@@ -85,7 +84,7 @@ class Program
         Console.WriteLine("1 - добавить товар");
         Console.WriteLine("2 - удалить товар");
         Console.WriteLine("3 - заказать поставку товара");
-        Console.WriteLine("4 - продать товар);
+        Console.WriteLine("4 - продать товар");
         Console.WriteLine("5 - поиск товаров");
         Console.WriteLine("6. Показать все товары");
         Console.WriteLine("7. Выход");
@@ -99,6 +98,47 @@ class Program
         products.Add(new Product { Code = "11004", Name = "Лето в пионерском галстуке", Price = 400000, Quantity = 25, Category = Category.Книги });
         products.Add(new Product { Code = "11005", Name = "Книга по немецкому языку", Price = 1200, Quantity = 15, Category = Category.Учеба });
     }
+    static void AddProduct()
+    {
+        Console.WriteLine("Добавление товара");
+
+        Console.Write("Название товара: ");
+        string name = Console.ReadLine();
+        if (string.IsNullOrWhiteSpace(name))
+        {
+            Console.WriteLine("Ало, название не может быть пустым");
+            return;
+        }
+        Console.WriteLine("Цена:");
+        if (!decimal.TryParse(Console.ReadLine(), out decimal price) || price <= 0)
+        {
+            Console.WriteLine("Ноу ноу, неверная цена:");
+            return;
+        }
+
+        Console.WriteLine("Количество:");
+        {
+            Console.WriteLine("Откуда такие цифры, неверное количество");
+            return;
+        }
+
+        Console.WriteLine("Категории: 0 - Электроника, 1 - Одежда, 2 - Еда, 3 - Книги, 4 - Учеба");
+        Console.Write("Выберите категорию (0-4): ");
+        if (!int.TryParse(Console.ReadLine(), out int categoryNum) || categoryNum < 0 || categoryNum > 4)
+        {
+            Console.WriteLine("Неверная категория");
+            return;
+        }
+        Category category = (Category)categoryNum;
+        string code = "1" + nextId++;
+
+        products.Add(new Product { Code = code, Name = name, Price = price, Quantity = quantity, Category = category });
+        Console.WriteLine($"Товар добавлен, код: {code}");
+    }
+
+
+
+}
 
 
 
