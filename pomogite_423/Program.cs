@@ -153,6 +153,29 @@ class Program
             Console.WriteLine("Товар не найден!");
         }
     }
+    static void OrderSupply()
+    {
+        Console.WriteLine("Поставка товаров");
+        Console.Write("Введите код товара: ");
+        string code = Console.ReadLine();
+
+        var product = products.FirstOrDefault(p => p.Code == code);
+        if (product == null)
+        {
+            Console.WriteLine("Товар не найден");
+            return;
+        }
+
+        Console.Write("Количество для поставки: ");
+        if (!int.TryParse(Console.ReadLine(), out int quantity) || quantity <= 0)
+        {
+            Console.WriteLine("Неверное количество");
+            return;
+        }
+
+        product.Quantity += quantity;
+        Console.WriteLine($"Все круто супер чудно, новое количество: {product.Quantity}");
+    }
 
 
 
