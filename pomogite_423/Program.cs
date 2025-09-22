@@ -62,7 +62,7 @@ class Program
                     SearchProducts();
                     break;
                 case "6":
-                    //ShowAllProducts();
+                    ShowAllProducts();
                     break;
                 case "7":
                     Console.WriteLine("Выход из программы");
@@ -86,8 +86,8 @@ class Program
         Console.WriteLine("3 - заказать поставку товара");
         Console.WriteLine("4 - продать товар");
         Console.WriteLine("5 - поиск товаров");
-        Console.WriteLine("6. Показать все товары");
-        Console.WriteLine("7. Выход");
+        Console.WriteLine("6 - Показать все товары");
+        Console.WriteLine("7 - Выход");
         Console.Write("Выберите действие: ");
     }
     static void AddTestProducts()
@@ -117,6 +117,7 @@ class Program
         }
 
         Console.WriteLine("Количество:");
+        if (!int.TryParse(Console.ReadLine(), out int quantity) || quantity < 0)
         {
             Console.WriteLine("Откуда такие цифры, неверное количество");
             return;
@@ -202,6 +203,7 @@ class Program
             decimal total = product.Price * quantity;
             Console.WriteLine($"Чудно, продано. Остаток: {product.Quantity}, Сумма: {total} руб.");
         }
+        else
         {
             Console.WriteLine($"Недостаточно товара, доступно: {product.Quantity}");
         }
@@ -259,8 +261,20 @@ class Program
             Console.WriteLine("Товары не найдены");
         }
     }
+    static void ShowAllProducts()
+    {
+        Console.WriteLine("\n=== ВСЕ ТОВАРЫ ===");
+        if (products.Count == 0)
+        {
+            Console.WriteLine("Товаров нет!");
+            return;
+        }
 
-
+        foreach (var product in products)
+        {
+            Console.WriteLine(product);
+        }
+    }
 }
 
 
