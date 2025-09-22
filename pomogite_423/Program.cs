@@ -91,7 +91,7 @@ class Program
         Console.WriteLine("7. Выход");
         Console.Write("Выберите действие: ");
     }
-//4
+
 
 
 
