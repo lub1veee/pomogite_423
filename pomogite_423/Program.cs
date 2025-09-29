@@ -87,3 +87,23 @@ static string korotkii(string text, bool findShortest)
         return result.Length > 0 ? result : "нет";
     }
 }
+static int predlozh(string text)
+{
+    int count = 0;
+    bool predlzh = false;
+    foreach (var  p in text)
+    {
+        if (char.IsLetterOrDigit(p))
+        {
+            predlzh = true;
+        }
+        else if ((p == '.' || p == '!' || p == '?') && predlzh)
+        {
+            count++;
+            predlzh = false;
+        }
+    }
+    if (predlzh) count++;
+    return count;
+}
+
