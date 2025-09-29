@@ -55,3 +55,35 @@ static int countw(string text)
     }
     return count;
 }
+
+static string korotkii(string text, bool findShortest)
+{
+    string result = "";
+    string current = "";
+
+    foreach (char c in text)
+    {
+        if (char.IsLetterOrDigit(c))
+        {
+            current += c;
+        }
+        else
+        {
+            if (current.Length > 0)
+            {
+                if (result.Length == 0) result = current;
+                else if (findShortest && current.Length < result.Length) result = current;
+                else if (!findShortest && current.Length > result.Length) result = current;
+            }
+            current = "";
+        }
+        if (current.Length > 0)
+        {
+            if (result.Length == 0) result = current;
+            else if (findShortest && current.Length < result.Length) result = current;
+            else if (!findShortest && current.Length > result.Length) result = current;
+        }
+
+        return result.Length > 0 ? result : "нет";
+    }
+}
