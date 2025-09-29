@@ -128,3 +128,26 @@ static int sogl(string text)
     }
     return count;
 }
+static string stat(string text)
+{
+    Dictionary<char, int> stats = new Dictionary<char, int>();
+
+    foreach(char s in text)
+    {
+        char lower = char.ToLower(s);
+        if(char.IsLetter(lower))
+        {
+            if(stats.ContainsKey(lower)) stats[lower]++;
+            else stats[lower] = 1;
+        }
+    }
+    List<char> letters = new List<char>(stats.Keys);
+    letters.Sort();
+
+    string result = "";
+    foreach(char letter in letters)
+    {
+        result += $" '{letter}': {stats[letter]}";
+    }
+    return result.Length > 0 ? result : " не найдено";
+}
