@@ -107,3 +107,24 @@ static int predlozh(string text)
     return count;
 }
 
+static int glas(string text)
+{
+    int count = 0;
+    string glas = "аеёиоуыэюяАЕЁИОУЫЭЮЯ";
+    foreach (var g in text)
+    {
+        if(glas.IndexOf(g)>= 0) count++;
+    }
+    return count;
+
+}
+static int sogl(string text)
+{
+    int count = 0;
+
+    foreach(char s in text)
+    {
+        if(char.IsLetter(s) && glas(s.ToString()) == 0) count++;
+    }
+    return count;
+}
