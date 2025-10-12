@@ -322,5 +322,40 @@ class programm
         }
         Console.ReadKey();
     }
+    static void SortBooks()
+    {
+        Console.Clear();
+        Console.WriteLine("=== СОРТИРОВКА КНИГ ===");
+        Console.WriteLine("1. По названию");
+        Console.WriteLine("2. По году издания");
+        Console.Write("Выберите тип сортировки: ");
+
+        if (int.TryParse(Console.ReadLine(), out int sortType))
+        {
+            List<Book> sortedBooks = new List<Book>();
+
+            switch (sortType)
+            {
+                case 1:
+                    sortedBooks = _library.SortByTitle();
+                    Console.WriteLine("\nКниги отсортированы по названию:");
+                    break;
+                case 2:
+                    sortedBooks = _library.SortByYear();
+                    Console.WriteLine("\nКниги отсортированы по году издания:");
+                    break;
+                default:
+                    Console.WriteLine("Неверный тип сортировки!");
+                    return;
+            }
+
+            DisplaySearchResults(sortedBooks);
+        }
+        else
+        {
+            Console.WriteLine("Неверный формат ввода!");
+        }
+        Console.ReadKey();
+    }
 
             
