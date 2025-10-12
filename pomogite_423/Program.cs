@@ -103,6 +103,7 @@ public class Library
     {
         return _books.Where(b => b.Genre == genre).ToList();
     }
+    
     public void InitializeTestData()
     {
         AddBook(new Book("Лисья Нора", "Нора Сакавич", Genre.Fantasy, 2020, 550));
