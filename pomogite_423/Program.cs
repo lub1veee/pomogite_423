@@ -90,6 +90,19 @@ public class Library
     {
         return new List<Book>(_books);
     }
+
+    public List<Book> FindBooksByTitle(string title)
+    {
+        return _books.Where(b => b.Title.Contains(title, StringComparison.OrdinalIgnoreCase)).ToList();
+    }
+    public List<Book> FindBooksByAuthor(string author)
+    {
+        return _books.Where(b => b.Author.Contains(author, StringComparison.OrdinalIgnoreCase)).ToList();
+    }
+    public List<Book> FindBooksByGenre(Genre genre)
+    {
+        return _books.Where(b => b.Genre == genre).ToList();
+    }
     public void InitializeTestData()
     {
         AddBook(new Book("Лисья Нора", "Нора Сакавич", Genre.Fantasy, 2020, 550));
@@ -179,3 +192,9 @@ class programm
         Console.WriteLine("ДОБАВЛЕНИЕ НОВОЙ КНИГИ");
         Console.ReadKey();
     }
+    static void RemoveBook()
+    {
+        Console.Clear();
+        Console.WriteLine("УДАЛЕНИЕ КНИГИ");
+
+            
