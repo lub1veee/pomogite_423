@@ -8,7 +8,7 @@ public enum Genre
     Romance,
     Mystery,
     Thriller,
-    ScienceFiction  // Исправлено: было ScienceFictio
+    ScienceFiction 
 }
 
 public class Book
@@ -78,7 +78,6 @@ public class Library
         return _books.Where(b => b.Genre == genre).ToList();
     }
 
-    // Добавлены методы сортировки
     public List<Book> SortByTitle()
     {
         return _books.OrderBy(b => b.Title).ToList();
@@ -109,10 +108,10 @@ public class Library
     public void InitializeTestData()
     {
         AddBook(new Book("Лисья Нора", "Нора Сакавич", Genre.Fantasy, 2020, 550));
-        AddBook(new Book("Лето в пионерском галстуке", "Катерина Сильванова", Genre.Romance, 2017, 770)); // Исправлено: галстке -> галстуке
-        AddBook(new Book("Спеши любить", "Николас Спаркс", Genre.Romance, 2019, 890)); // Исправлено: Спракс -> Спаркс
+        AddBook(new Book("Лето в пионерском галстуке", "Катерина Сильванова", Genre.Romance, 2017, 770));
+        AddBook(new Book("Спеши любить", "Николас Спаркс", Genre.Romance, 2019, 890));
         AddBook(new Book("Гордость и предубеждение", "Джейн Остин", Genre.Romance, 1813, 720m));
-        AddBook(new Book("1984", "Джордж Оруэлл", Genre.ScienceFiction, 1949, 850)); // Исправлен жанр
+        AddBook(new Book("1984", "Джордж Оруэлл", Genre.ScienceFiction, 1949, 850)); 
     }
 }
 
