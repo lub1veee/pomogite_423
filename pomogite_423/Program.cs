@@ -360,7 +360,7 @@ class programm
     static void ShowPriceExtremes()
     {
         Console.Clear();
-        Console.WriteLine("=== САМАЯ ДОРОГАЯ И ДЕШЁВАЯ КНИГА ===");
+        Console.WriteLine("САМАЯ ДОРОГАЯ И ДЕШЁВАЯ КНИГА");
 
         var (mostExpensive, cheapest) = _library.GetPriceExtremes();
 
@@ -375,9 +375,31 @@ class programm
             Console.WriteLine("\nСамая дешёвая книга:");
             Console.WriteLine(cheapest);
         }
+        Console.ReadKey();
+    }
+    static void GroupBooksByAuthor()
+    {
+        Console.Clear();
+        Console.WriteLine("ГРУППИРОВКА КНИГ ПО АВТОРАМ");
+
+        var authorGroups = _library.GetBooksCountByAuthor();
+
+        if (authorGroups.Count == 0)
+        {
+            Console.WriteLine("В библиотеке нет книг.");
+        }
+        else
+        {
+            Console.WriteLine("Количество книг по авторам:");
+            foreach (var group in authorGroups.OrderByDescending(g => g.Value))
+            {
+                Console.WriteLine($"{group.Key}: {group.Value} книг(и)");
+            }
+        }
 
         Console.WriteLine("\nНажмите любую клавишу для продолжения...");
         Console.ReadKey();
     }
+
 
             
