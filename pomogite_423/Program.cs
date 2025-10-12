@@ -205,11 +205,122 @@ class programm
     {
         Console.Clear();
         Console.WriteLine("ДОБАВЛЕНИЕ НОВОЙ КНИГИ");
+        try
+        {
+            string title = GetValidatedInput("Введите название книги: ",
+                input => !string.IsNullOrWhiteSpace(input), "Название не может быть пустым!");
+
+            string author = GetValidatedInput("Введите автора книги: ",
+                input => !string.IsNullOrWhiteSpace(input), "Автор не может быть пустым!");
+
+            Console.WriteLine("\nДоступные жанры:");
+            foreach (var genre in Enum.GetValues(typeof(Genre)))
+            {
+                Console.WriteLine($"{(int)genre}. {genre}");
+            }
+
+            Genre bookGenre = GetValidatedGenre("Выберите жанр (введите номер): ");
+
+            int year = GetValidatedYear("Введите год издания: ");
+
+            decimal price = GetValidatedPrice("Введите цену книги: ");
+
+            var newBook = new Book(title, author, bookGenre, year, price);
+            _library.AddBook(newBook);
+
+            Console.WriteLine($"\nКнига успешно добавлена! ID: {newBook.Id}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Ошибка при добавлении книги: {ex.Message}");
+        }
+
         Console.ReadKey();
     }
     static void RemoveBook()
     {
         Console.Clear();
         Console.WriteLine("УДАЛЕНИЕ КНИГИ");
+        try
+        {
+            string title = GetValidatedInput("Введите название книги: ",
+                input => !string.IsNullOrWhiteSpace(input), "Название не может быть пустым!");
+
+            string author = GetValidatedInput("Введите автора книги: ",
+                input => !string.IsNullOrWhiteSpace(input), "Автор не может быть пустым!");
+
+            Console.WriteLine("\nДоступные жанры:");
+            foreach (var genre in Enum.GetValues(typeof(Genre)))
+            {
+                Console.WriteLine($"{(int)genre}. {genre}");
+            }
+
+            Genre bookGenre = GetValidatedGenre("Выберите жанр (введите номер): ");
+
+            int year = GetValidatedYear("Введите год издания: ");
+
+            decimal price = GetValidatedPrice("Введите цену книги: ");
+
+            var newBook = new Book(title, author, bookGenre, year, price);
+            _library.AddBook(newBook);
+
+            Console.WriteLine($"\nКнига успешно добавлена! ID: {newBook.Id}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Ошибка при добавлении книги: {ex.Message}");
+        }
+
+        Console.WriteLine("\nНажмите любую клавишу для продолжения...");
+        Console.ReadKey();
+    }
+
+    static void SearchBooks()
+    {
+        Console.Clear();
+        Console.WriteLine("ПОИСК КНИГ");
+        Console.WriteLine("1. По названию");
+        Console.WriteLine("2. По автору");
+        Console.WriteLine("3. По жанру");
+        Console.Write("Выберите тип поиска: ");
+
+        if (int.TryParse(Console.ReadLine(), out int searchType))
+        {
+            List<Book> results = new List<Book>();
+
+            switch (searchType)
+            {
+                case 1:
+                    Console.Write("Введите название для поиска: ");
+                    string title = Console.ReadLine() ?? "";
+                    results = _library.FindBooksByTitle(title);
+                    break;
+                case 2:
+                    Console.Write("Введите автора для поиска: ");
+                    string author = Console.ReadLine() ?? "";
+                    results = _library.FindBooksByAuthor(author);
+                    break;
+                case 3:
+                    Console.WriteLine("\nДоступные жанры:");
+                    foreach (var genre in Enum.GetValues(typeof(Genre)))
+                    {
+                        Console.WriteLine($"{(int)genre}. {genre}");
+                    }
+                    Genre genreSearch = GetValidatedGenre("Выберите жанр для поиска: ");
+                    results = _library.FindBooksByGenre(genreSearch);
+                    break;
+                default:
+                    Console.WriteLine("Неверный тип поиска!");
+                    break;
+            }
+
+            DisplaySearchResults(results);
+        }
+        else
+        {
+            Console.WriteLine("Неверный формат ввода!");
+        }
+        Console.ReadKey();
+    }
 
             
