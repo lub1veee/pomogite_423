@@ -396,10 +396,20 @@ class programm
                 Console.WriteLine($"{group.Key}: {group.Value} книг(и)");
             }
         }
+        Console.ReadKey();
+    }
+    static void ShowAllBooks()
+    {
+        Console.Clear();
+        Console.WriteLine("ВСЕ КНИГИ В БИБЛИОТЕКЕ");
+
+        var books = _library.GetAllBooks();
+        DisplaySearchResults(books);
 
         Console.WriteLine("\nНажмите любую клавишу для продолжения...");
         Console.ReadKey();
     }
+
 
 
 
