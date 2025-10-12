@@ -173,4 +173,9 @@ class programm
                 break;
         }
     }
-}
+    static void AddBook()
+    {
+        Console.Clear();
+        Console.WriteLine("ДОБАВЛЕНИЕ НОВОЙ КНИГИ");
+        Console.ReadKey();
+    }
