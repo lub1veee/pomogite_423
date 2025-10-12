@@ -357,5 +357,27 @@ class programm
         }
         Console.ReadKey();
     }
+    static void ShowPriceExtremes()
+    {
+        Console.Clear();
+        Console.WriteLine("=== САМАЯ ДОРОГАЯ И ДЕШЁВАЯ КНИГА ===");
+
+        var (mostExpensive, cheapest) = _library.GetPriceExtremes();
+
+        if (mostExpensive == null || cheapest == null)
+        {
+            Console.WriteLine("В библиотеке нет книг.");
+        }
+        else
+        {
+            Console.WriteLine("Самая дорогая книга:");
+            Console.WriteLine(mostExpensive);
+            Console.WriteLine("\nСамая дешёвая книга:");
+            Console.WriteLine(cheapest);
+        }
+
+        Console.WriteLine("\nНажмите любую клавишу для продолжения...");
+        Console.ReadKey();
+    }
 
             
