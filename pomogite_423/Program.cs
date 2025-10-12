@@ -113,6 +113,11 @@ public class Library
 
         return (mostExpensive, cheapest);
     }
+    public Dictionary<string, int> GetBooksCountByAuthor()
+    {
+        return _books.GroupBy(b => b.Author)
+                    .ToDictionary(g => g.Key, g => g.Count());
+    }
     public void InitializeTestData()
     {
         AddBook(new Book("Лисья Нора", "Нора Сакавич", Genre.Fantasy, 2020, 550));
