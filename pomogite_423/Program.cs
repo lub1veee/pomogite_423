@@ -103,7 +103,16 @@ public class Library
     {
         return _books.Where(b => b.Genre == genre).ToList();
     }
-    
+    public (Book? mostExpensive, Book? cheapest) GetPriceExtremes()
+    {
+        if (_books.Count == 0)
+            return (null, null);
+
+        var mostExpensive = _books.OrderByDescending(b => b.Price).First();
+        var cheapest = _books.OrderBy(b => b.Price).First();
+
+        return (mostExpensive, cheapest);
+    }
     public void InitializeTestData()
     {
         AddBook(new Book("Лисья Нора", "Нора Сакавич", Genre.Fantasy, 2020, 550));
