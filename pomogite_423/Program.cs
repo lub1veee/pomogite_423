@@ -387,5 +387,33 @@ namespace UniversityManagementSystem
                 Console.WriteLine($"Ошибка: {ex.Message}");
             }
         }
+        public void AddNewProfessor()
+        {
+            try
+            {
+                Console.Write("Введите имя преподавателя: ");
+                string name = Console.ReadLine();
+
+                Console.Write("Введите возраст преподавателя: ");
+                int age = int.Parse(Console.ReadLine());
+
+                Console.Write("Введите контактную информацию: ");
+                string contactInfo = Console.ReadLine();
+
+                Console.Write("Введите кафедру: ");
+                string department = Console.ReadLine();
+
+                Console.Write("Введите зарплату: ");
+                decimal salary = decimal.Parse(Console.ReadLine());
+
+                var professor = new Professor(name, age, contactInfo, department, salary);
+                AddProfessor(professor);
+                Console.WriteLine("Преподаватель успешно добавлен!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка: {ex.Message}");
+            }
+        }
 
 
