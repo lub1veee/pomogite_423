@@ -348,5 +348,19 @@ namespace UniversityManagementSystem
                 Console.WriteLine();
             }
         }
+        public Student FindStudentByName(string name)
+        {
+            return students.FirstOrDefault(s => s.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+        }
+
+        public Professor FindProfessorByName(string name)
+        {
+            return professors.FirstOrDefault(p => p.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+        }
+
+        public Course FindCourseByName(string name)
+        {
+            return courses.FirstOrDefault(c => c.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+        }
 
 
