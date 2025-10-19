@@ -265,4 +265,47 @@ namespace UniversityManagementSystem
             return string.Join("\n", students.Select(s => $" - {s.Name} (ID: {s.StudentId})"));
         }
     }
+    // Основной класс системы управления университетом
+    public class UniversityManagementSystem
+    {
+        // Инкапсуляция: приватные коллекции с публичными методами для управления
+        private List<Student> students;
+        private List<Professor> professors;
+        private List<Course> courses;
+
+        public UniversityManagementSystem()
+        {
+            students = new List<Student>();
+            professors = new List<Professor>();
+            courses = new List<Course>();
+            InitializeSampleData();
+        }
+
+        private void InitializeSampleData()
+        {
+            // Добавляем тестовые данные
+            var prof1 = new Professor("Мария Сокольническая", 45, "maria@university.ru", "Компьютерные науки", 80000);
+            var prof2 = new Professor("Максим Олегович", 38, "maxon@university.ru", "Математика", 75000);
+
+            var student1 = new Student("Витек Помогайкин", 20, "vitek@student.ru", "S2024001");
+            var student2 = new Student("Ликер кофейный", 21, "cofee@student.ru", "S2024002");
+
+            var course1 = new Course("Программирование на C#", "Основы программирования на языке C#", 4);
+            var course2 = new Course("Алгебра", "Высшая математика", 3);
+
+            AddProfessor(prof1);
+            AddProfessor(prof2);
+            AddStudent(student1);
+            AddStudent(student2);
+            AddCourse(course1);
+            AddCourse(course2);
+
+            course1.AssignProfessor(prof1);
+            course2.AssignProfessor(prof2);
+
+            student1.EnrollInCourse(course1);
+            student1.EnrollInCourse(course2);
+            student2.EnrollInCourse(course1);
+        }
+
 
