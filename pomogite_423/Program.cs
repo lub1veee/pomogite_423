@@ -85,3 +85,65 @@ namespace UniversityManagementSystem
 
         public abstract string GetRole();
     }
+    public interface IIdentifiable
+    {
+        int Id { get; }
+    }
+
+    public class Student : Person, IIdentifiable
+    {
+        private static int nextId = 1;
+
+        public int Id { get; }
+        private List<Course> courses;
+
+        public IReadOnlyList<Course> Courses => courses.AsReadOnly();
+        public string StudentId { get; }
+
+        public Student(string name, int age, string contactInfo, string studentId)
+            : base(name, age, contactInfo)
+        {
+            Id = nextId++;
+            StudentId = studentId;
+            courses = new List<Course>();
+        }
+
+        public void EnrollInCourse(Course course)
+        {
+            if (course == null)
+                throw new ArgumentNullException(nameof(course));
+
+            if (!courses.Contains(course))
+            {
+                courses.Add(course);
+                course.AddStudent(this);
+            }
+        }
+
+        public void DropCourse(Course course)
+        {
+            if (course != null && courses.Contains(course))
+            {
+                courses.Remove(course);
+                course.RemoveStudent(this);
+            }
+        }
+
+        public override string GetInfo()
+        {
+            return $"{base.GetInfo()}, ID студента: {StudentId}";
+        }
+
+        public override string GetRole()
+        {
+            return "Студент";
+        }
+
+        public string GetCoursesInfo()
+        {
+            if (courses.Count == 0)
+                return "Студент не записан на курсы";
+
+            return string.Join("\n", courses.Select(c => $" - {c.Name}"));
+        }
+    }
