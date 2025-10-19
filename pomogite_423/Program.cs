@@ -283,7 +283,7 @@ namespace UniversityManagementSystem
 
         private void InitializeSampleData()
         {
-            // Добавляем тестовые данные
+       
             var prof1 = new Professor("Мария Сокольническая", 45, "maria@university.ru", "Компьютерные науки", 80000);
             var prof2 = new Professor("Максим Олегович", 38, "maxon@university.ru", "Математика", 75000);
 
@@ -306,6 +306,47 @@ namespace UniversityManagementSystem
             student1.EnrollInCourse(course1);
             student1.EnrollInCourse(course2);
             student2.EnrollInCourse(course1);
+        }
+        public void AddStudent(Student student)
+        {
+            if (student != null && !students.Contains(student))
+                students.Add(student);
+        }
+
+        public Student FindStudentById(string studentId)
+        {
+            return students.FirstOrDefault(s => s.StudentId == studentId);
+        }
+
+        public void DisplayAllStudents()
+        {
+            Console.WriteLine("ВСЕ СТУДЕНТЫ");
+            foreach (var student in students)
+            {
+                Console.WriteLine(student.GetInfo());
+                Console.WriteLine();
+            }
+        }
+
+        public void AddProfessor(Professor professor)
+        {
+            if (professor != null && !professors.Contains(professor))
+                professors.Add(professor);
+        }
+
+        public Professor FindProfessorById(int id)
+        {
+            return professors.FirstOrDefault(p => p.Id == id);
+        }
+
+        public void DisplayAllProfessors()
+        {
+            Console.WriteLine("ВСЕ ПРЕПОДАВАТЕЛИ");
+            foreach (var professor in professors)
+            {
+                Console.WriteLine(professor.GetInfo());
+                Console.WriteLine();
+            }
         }
 
 
