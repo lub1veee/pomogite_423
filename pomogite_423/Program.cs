@@ -197,3 +197,72 @@ namespace UniversityManagementSystem
             return string.Join("\n", courses.Select(c => $" - {c.Name}"));
         }
     }
+    public class Course : IIdentifiable
+    {
+        private static int nextId = 1;
+
+        public int Id { get; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public int Credits { get; set; }
+
+        private Professor professor;
+        private List<Student> students;
+
+        public Professor Professor
+        {
+            get => professor;
+            set
+            {
+                professor = value;
+                value?.AssignToCourse(this);
+            }
+        }
+
+        public IReadOnlyList<Student> Students => students.AsReadOnly();
+
+        public Course(string name, string description, int credits)
+        {
+            Id = nextId++;
+            Name = name;
+            Description = description;
+            Credits = credits;
+            students = new List<Student>();
+        }
+
+        public void AssignProfessor(Professor professor)
+        {
+            Professor = professor;
+        }
+
+        public void AddStudent(Student student)
+        {
+            if (student != null && !students.Contains(student))
+            {
+                students.Add(student);
+            }
+        }
+
+        public void RemoveStudent(Student student)
+        {
+            if (student != null)
+            {
+                students.Remove(student);
+            }
+        }
+
+        public string GetInfo()
+        {
+            string professorInfo = Professor != null ? Professor.Name : "Не назначен";
+            return $"Курс: {Name}\nОписание: {Description}\nКредиты: {Credits}\nПреподаватель: {professorInfo}\nКоличество студентов: {students.Count}";
+        }
+
+        public string GetStudentsInfo()
+        {
+            if (students.Count == 0)
+                return "На курс не записаны студенты";
+
+            return string.Join("\n", students.Select(s => $" - {s.Name} (ID: {s.StudentId})"));
+        }
+    }
+
