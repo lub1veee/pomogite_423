@@ -362,5 +362,30 @@ namespace UniversityManagementSystem
         {
             return courses.FirstOrDefault(c => c.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
+        public void AddNewStudent()
+        {
+            try
+            {
+                Console.Write("Введите имя студента: ");
+                string name = Console.ReadLine();
+
+                Console.Write("Введите возраст студента: ");
+                int age = int.Parse(Console.ReadLine());
+
+                Console.Write("Введите контактную информацию: ");
+                string contactInfo = Console.ReadLine();
+
+                Console.Write("Введите ID студента: ");
+                string studentId = Console.ReadLine();
+
+                var student = new Student(name, age, contactInfo, studentId);
+                AddStudent(student);
+                Console.WriteLine("Студент успешно добавлен!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка: {ex.Message}");
+            }
+        }
 
 
