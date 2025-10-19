@@ -2,7 +2,7 @@
 
 using System.Runtime.CompilerServices;
 using System;
-
+using System.Linq;
 /*internal class Dog
 {
     public void Move()
@@ -30,3 +30,58 @@ class Program
 }
 */
 
+namespace UniversityManagementSystem
+{
+    public abstract class Person
+    {
+        private string name;
+        private int age;
+        private string contactInfo;
+
+        public string Name
+        {
+            get => name;
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                    throw new ArgumentException("Имя не может быть пустым");
+                name = value;
+            }
+        }
+
+        public int Age
+        {
+            get => age;
+            set
+            {
+                if (value < 16 || value > 100)
+                    throw new ArgumentException("Возраст должен быть от 16 до 100 лет");
+                age = value;
+            }
+        }
+
+        public string ContactInfo
+        {
+            get => contactInfo;
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                    throw new ArgumentException("Контактная информация не может быть пустой");
+                contactInfo = value;
+            }
+        }
+
+        protected Person(string name, int age, string contactInfo)
+        {
+            Name = name;
+            Age = age;
+            ContactInfo = contactInfo;
+        }
+
+        public virtual string GetInfo()
+        {
+            return $"Имя: {Name}, Возраст: {Age}, Контакты: {ContactInfo}";
+        }
+
+        public abstract string GetRole();
+    }
