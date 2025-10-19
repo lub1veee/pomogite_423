@@ -486,7 +486,112 @@ namespace UniversityManagementSystem
             course.AssignProfessor(professor);
             Console.WriteLine("Преподаватель успешно назначен на курс!");
         }
+        public void DisplayStudentCourses()
+        {
+            Console.Write("Введите ID студента: ");
+            string studentId = Console.ReadLine();
+            var student = FindStudentById(studentId);
 
+            if (student == null)
+            {
+                Console.WriteLine("Студент не найден!");
+                return;
+            }
+
+            Console.WriteLine($"\nКурсы студента {student.Name}:");
+            Console.WriteLine(student.GetCoursesInfo());
+        }
+
+        public void DisplayCourseStudents()
+        {
+            Console.Write("Введите название курса: ");
+            string courseName = Console.ReadLine();
+            var course = FindCourseByName(courseName);
+
+            if (course == null)
+            {
+                Console.WriteLine("Курс не найден!");
+                return;
+            }
+
+            Console.WriteLine($"\nСтуденты курса {course.Name}:");
+            Console.WriteLine(course.GetStudentsInfo());
+        }
+    }
+    public class MenuManager
+    {
+        private UniversityManagementSystem university;
+
+        public MenuManager()
+        {
+            university = new UniversityManagementSystem();
+        }
+
+        public void DisplayMenu()
+        {
+            while (true)
+            {
+                Console.WriteLine("\n=== СИСТЕМА УПРАВЛЕНИЯ УНИВЕРСИТЕТОМ ===");
+                Console.WriteLine("1. Добавить нового студента");
+                Console.WriteLine("2. Добавить нового преподавателя");
+                Console.WriteLine("3. Добавить новый курс");
+                Console.WriteLine("4. Записать студента на курс");
+                Console.WriteLine("5. Назначить преподавателя на курс");
+                Console.WriteLine("6. Показать курсы студента");
+                Console.WriteLine("7. Показать студентов курса");
+                Console.WriteLine("8. Показать всех студентов");
+                Console.WriteLine("9. Показать всех преподавателей");
+                Console.WriteLine("10. Показать все курсы");
+                Console.WriteLine("0. Выход");
+                Console.Write("Выберите опцию: ");
+
+                string choice = Console.ReadLine();
+
+                switch (choice)
+                {
+                    case "1":
+                        university.AddNewStudent();
+                        break;
+                    case "2":
+                        university.AddNewProfessor();
+                        break;
+                    case "3":
+                        university.AddNewCourse();
+                        break;
+                    case "4":
+                        university.EnrollStudentInCourse();
+                        break;
+                    case "5":
+                        university.AssignProfessorToCourse();
+                        break;
+                    case "6":
+                        university.DisplayStudentCourses();
+                        break;
+                    case "7":
+                        university.DisplayCourseStudents();
+                        break;
+                    case "8":
+                        university.DisplayAllStudents();
+                        break;
+                    case "9":
+                        university.DisplayAllProfessors();
+                        break;
+                    case "10":
+                        university.DisplayAllCourses();
+                        break;
+                    case "0":
+                        Console.WriteLine("Выход из системы...");
+                        return;
+                    default:
+                        Console.WriteLine("Неверный выбор. Попробуйте снова.");
+                        break;
+                }
+
+                Console.WriteLine("\nНажмите любую клавишу для продолжения");
+                Console.ReadKey();
+            }
+        }
+    }
 
 
 
