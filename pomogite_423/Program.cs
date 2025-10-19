@@ -461,6 +461,32 @@ namespace UniversityManagementSystem
             student.EnrollInCourse(course);
             Console.WriteLine("Студент успешно записан на курс!");
         }
+        public void AssignProfessorToCourse()
+        {
+            Console.Write("Введите имя преподавателя: ");
+            string professorName = Console.ReadLine();
+            var professor = FindProfessorByName(professorName);
+
+            if (professor == null)
+            {
+                Console.WriteLine("Преподаватель не найден!");
+                return;
+            }
+
+            Console.Write("Введите название курса: ");
+            string courseName = Console.ReadLine();
+            var course = FindCourseByName(courseName);
+
+            if (course == null)
+            {
+                Console.WriteLine("Курс не найден!");
+                return;
+            }
+
+            course.AssignProfessor(professor);
+            Console.WriteLine("Преподаватель успешно назначен на курс!");
+        }
+
 
 
 
