@@ -448,6 +448,19 @@ namespace UniversityManagementSystem
                 Console.WriteLine("Студент не найден!");
                 return;
             }
+            Console.Write("Введите название курса: ");
+            string courseName = Console.ReadLine();
+            var course = FindCourseByName(courseName);
+
+            if (course == null)
+            {
+                Console.WriteLine("Курс не найден!");
+                return;
+            }
+
+            student.EnrollInCourse(course);
+            Console.WriteLine("Студент успешно записан на курс!");
+        }
 
 
 
