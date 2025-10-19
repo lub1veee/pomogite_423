@@ -437,5 +437,17 @@ namespace UniversityManagementSystem
                 Console.WriteLine($"Ошибка: {ex.Message}");
             }
         }
+        public void EnrollStudentInCourse()
+        {
+            Console.Write("Введите ID студента: ");
+            string studentId = Console.ReadLine();
+            var student = FindStudentById(studentId);
+
+            if (student == null)
+            {
+                Console.WriteLine("Студент не найден!");
+                return;
+            }
+
 
 
