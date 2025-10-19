@@ -147,3 +147,53 @@ namespace UniversityManagementSystem
             return string.Join("\n", courses.Select(c => $" - {c.Name}"));
         }
     }
+    public class Professor : Person, IIdentifiable
+    {
+        private static int nextId = 1;
+
+        public int Id { get; }
+        private List<Course> courses;
+
+        public IReadOnlyList<Course> Courses => courses.AsReadOnly();
+        public string Department { get; set; }
+        public decimal Salary { get; set; }
+
+        public Professor(string name, int age, string contactInfo, string department, decimal salary)
+            : base(name, age, contactInfo)
+        {
+            Id = nextId++;
+            Department = department;
+            Salary = salary;
+            courses = new List<Course>();
+        }
+
+        public void AssignToCourse(Course course)
+        {
+            if (course == null)
+                throw new ArgumentNullException(nameof(course));
+
+            if (!courses.Contains(course))
+            {
+                courses.Add(course);
+                course.AssignProfessor(this);
+            }
+        }
+
+        public override string GetInfo()
+        {
+            return $"{base.GetInfo()}, Кафедра: {Department}, Зарплата: {Salary:C}";
+        }
+
+        public override string GetRole()
+        {
+            return "Преподаватель";
+        }
+
+        public string GetTeachingCoursesInfo()
+        {
+            if (courses.Count == 0)
+                return "Преподаватель не ведет курсы";
+
+            return string.Join("\n", courses.Select(c => $" - {c.Name}"));
+        }
+    }
