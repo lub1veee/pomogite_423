@@ -415,5 +415,27 @@ namespace UniversityManagementSystem
                 Console.WriteLine($"Ошибка: {ex.Message}");
             }
         }
+        public void AddNewCourse()
+        {
+            try
+            {
+                Console.Write("Введите название курса: ");
+                string name = Console.ReadLine();
+
+                Console.Write("Введите описание курса: ");
+                string description = Console.ReadLine();
+
+                Console.Write("Введите количество кредитов: ");
+                int credits = int.Parse(Console.ReadLine());
+
+                var course = new Course(name, description, credits);
+                AddCourse(course);
+                Console.WriteLine("Курс успешно добавлен!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка: {ex.Message}");
+            }
+        }
 
 
