@@ -14,6 +14,7 @@ namespace pomogite_423
         {
             while (true)
             {
+                ChestOrFight();
 
             }
                                                                                                                                                                                                        
@@ -52,7 +53,7 @@ namespace pomogite_423
             }
         }
         private void ChooseWeapon()
-        {
+        { 
 
         }
 
@@ -65,7 +66,6 @@ namespace pomogite_423
         {
 
         }
-
 
 
         private void StartFight()
