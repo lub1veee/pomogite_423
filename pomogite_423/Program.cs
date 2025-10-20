@@ -350,7 +350,7 @@ namespace UniversityManagementSystem
 
         public void AddCourse(Course course)
         {
-            if (course != null && courses.Contains(course))
+            if (course != null && !courses.Contains(course))
             {
                 courses.Add(course);
             }
