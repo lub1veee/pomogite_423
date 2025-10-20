@@ -265,10 +265,9 @@ namespace UniversityManagementSystem
             return string.Join("\n", students.Select(s => $" - {s.Name} (ID: {s.StudentId})"));
         }
     }
-    // Основной класс системы управления университетом
     public class UniversityManagementSystem
     {
-        // Инкапсуляция: приватные коллекции с публичными методами для управления
+       
         private List<Student> students;
         private List<Professor> professors;
         private List<Course> courses;
@@ -348,6 +347,26 @@ namespace UniversityManagementSystem
                 Console.WriteLine();
             }
         }
+
+        public void AddCourse(Course course)
+        {
+            if (course != null && courses.Contains(course))
+            {
+                courses.Add(course);
+            }
+        }
+        public void DisplayAllCourses()
+        {
+            Console.WriteLine("ВСЕ КУРСЫ");
+            foreach(var course in courses)
+            {
+                Console.WriteLine(course.GetInfo());
+                Console.WriteLine();
+            }
+
+        }
+       
+
         public Student FindStudentByName(string name)
         {
             return students.FirstOrDefault(s => s.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
@@ -531,7 +550,7 @@ namespace UniversityManagementSystem
         {
             while (true)
             {
-                Console.WriteLine("\n=== СИСТЕМА УПРАВЛЕНИЯ УНИВЕРСИТЕТОМ ===");
+                Console.WriteLine("СИСТЕМА УПРАВЛЕНИЯ УНИВЕРСИТЕТОМ");
                 Console.WriteLine("1. Добавить нового студента");
                 Console.WriteLine("2. Добавить нового преподавателя");
                 Console.WriteLine("3. Добавить новый курс");
