@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace pomogite_423
+namespace pomogite_423.Entities
 {
-    internal class Armor : Item
+    internal abstract class Entity
     {
-        public int Protecion;
+        public int Hp;
+        public int Damage;
 
     }
 }
