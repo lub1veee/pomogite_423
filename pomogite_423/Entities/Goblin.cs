@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace pomogite_423.Entities
 {
-    internal abstract class Entity
+    internal class Goblin : Enemy
     {
-        public int Hp;
-        public int Damage;
-
-        public abstract void GetDamage(int damage);
+        
     }
 }

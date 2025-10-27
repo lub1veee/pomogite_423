@@ -17,7 +17,7 @@ namespace pomogite_423.Entities
             Player.Instance.GetDamage(Damage);
         }
         
-        public void GetDamage(int damage)
+        public override void GetDamage(int damage)
         {
             Hp -= damage - Protection;
         }

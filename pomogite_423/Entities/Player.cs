@@ -21,9 +21,16 @@ namespace pomogite_423.Entities
             }
         }
 
-        public void GetDamage(int damage)
+        public override void GetDamage(int damage)
         {
             Hp -= damage - ArmorPlayer.Protection;
+            ArmorPlayer.Durability--;
+        }
+
+        public void AttackEnemy(Enemy enemy)
+        {
+            enemy.GetDamage(WeaponPlayer.Damage);
+            WeaponPlayer.Durability--;
         }
     }
 }
