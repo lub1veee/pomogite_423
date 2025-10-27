@@ -11,5 +11,6 @@ namespace pomogite_423.Entities
         public int Hp;
         public int Damage;
 
+
     }
 }

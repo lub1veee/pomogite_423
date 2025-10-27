@@ -9,11 +9,19 @@ namespace pomogite_423.Entities
     internal abstract class Enemy : Entity
     {
         public string Name;
+        public int Protection;
+        public int ArmDamage;
 
-        public void AttackPlayer()
+        public virtual void AttackPlayer()
         {
             Player.Instance.GetDamage(Damage);
         }
-        public 
+        
+        public void GetDamage(int damage)
+        {
+            Hp -= damage - Protection;
+        }
+
+
     }
 }
