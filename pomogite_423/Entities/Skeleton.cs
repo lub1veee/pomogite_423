@@ -8,6 +8,15 @@ namespace pomogite_423.Entities
 {
     internal class Skeleton : Enemy
     {
+        public Skeleton()
+        {
+            Name = "Скелет";
+            Hp = 25;
+            Damage = 10;
+            Protection = 5;
+        }
 
+        public override void AttackPlayer() =>
+            Player.Instance.BrakeArmorAndGetDamage(Damage);
     }
 }

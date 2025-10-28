@@ -10,12 +10,17 @@ namespace pomogite_423.Entities
     {
         public string Name;
         public int Protection;
-        public int ArmDamage;
 
-        public virtual void AttackPlayer()
+        public Enemy(int hp = 69, int damage = 13, int protection = 5, string name = "") : base(hp, damage)
         {
-            Player.Instance.GetDamage(Damage);
+            Hp = hp;
+            Damage = damage;
+            Name = name;
+            Protection = protection;
+            
         }
+
+        public abstract void AttackPlayer();
         
         public override void GetDamage(int damage)
         {

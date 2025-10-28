@@ -13,6 +13,18 @@ namespace pomogite_423.Entities
 
         public static Player Instance;
 
+        private bool _armorBroken = false;
+
+        public bool IsFreezed = false;
+
+        public Player(Armor armorPlayer, Weapon weaponPlayer, int hp = 100, int damage = 5) : base(hp, damage)
+        {
+            Hp = hp;
+            Damage = damage;
+            ArmorPlayer = armorPlayer;
+            WeaponPlayer = weaponPlayer;
+        }
+
         public void Initialize()
         {
             if(Instance == null)
@@ -21,10 +33,29 @@ namespace pomogite_423.Entities
             }
         }
 
-        public override void GetDamage(int damage)
+        public void BrakeArmorAndGetDamage(int damage )
         {
-            Hp -= damage - ArmorPlayer.Protection;
-            ArmorPlayer.Durability--;
+            _armorBroken = true;
+            GetDamage(damage);
+        }
+
+
+
+
+        public override void GetDamage(int damage = 10)
+        {
+            if (!_armorBroken)
+            {
+                Hp -= damage - ArmorPlayer.Protection;
+                ArmorPlayer.Durability--;
+            }
+            else
+            {
+                Hp -= damage;
+                Console.WriteLine("Броня сломана!");
+            }
+
+            _armorBroken = false;
         }
 
         public void AttackEnemy(Enemy enemy)

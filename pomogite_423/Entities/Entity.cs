@@ -12,5 +12,11 @@ namespace pomogite_423.Entities
         public int Damage;
 
         public abstract void GetDamage(int damage);
+
+        public Entity(int hp = 30, int damage = 3)
+        {
+            Hp = hp;
+            Damage = damage;
+        }
     }
 }
