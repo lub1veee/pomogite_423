@@ -8,7 +8,7 @@ namespace pomogite_423.Entities
 {
     internal class Mage : Enemy
     {
-        private double _freezeChance;
+        protected double _freezeChance;
 
         Random random = new Random();
         public Mage()

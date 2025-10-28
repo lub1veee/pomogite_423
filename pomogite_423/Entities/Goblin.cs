@@ -8,7 +8,7 @@ namespace pomogite_423.Entities
 {   
     internal class Goblin : Enemy
     {
-        private double _critChance;
+        protected double _critChance;
         Random random = new();
         public Goblin() : base()
         {
