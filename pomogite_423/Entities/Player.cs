@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace pomogite_423.Entities
+namespace pomogite_423
 {
     internal class Player : Entity
     {
@@ -25,6 +25,7 @@ namespace pomogite_423.Entities
             WeaponPlayer = weaponPlayer;
 
             _random = random;
+            Initialize();
         }
 
         public void Initialize()
@@ -41,14 +42,14 @@ namespace pomogite_423.Entities
             GetDamage(damage);
         }
 
-
-
-
-        public override void GetDamage(int damage = 10)
+        public override int GetDamage(int damage = 10)
         {
             if (!_armorBroken)
             {
-                Hp -= damage - ArmorPlayer.Protection;
+                damage -= ArmorPlayer.Protection;
+                if (damage <= 0) damage = 1;
+                Hp -= damage;
+                if (Hp <= 0) Hp = 0;
                 ArmorPlayer.Durability--;
             }
             else
@@ -56,14 +57,37 @@ namespace pomogite_423.Entities
                 Hp -= damage;
                 Console.WriteLine("Броня сломана!");
             }
-
+            Console.WriteLine($"ЗАЩИТА\n" + $"{Program.Separator}\n" +
+                $"Полученный урон: {damage}"
+                );
+            if (Hp < 0) Hp = 0;
+            Console.WriteLine($"Здоровье {Hp}/{MaxHp}");
             _armorBroken = false;
+            return damage;
         }
 
         public void AttackEnemy(Enemy enemy)
         {
-            enemy.GetDamage(WeaponPlayer.Damage);
+            Console.WriteLine($"АТАКА\n" + $"{Program.Separator}\n" +
+                $"Нанесенный урон: " +
+                $"{enemy.GetDamage(WeaponPlayer.Damage)}"
+                );
+            Console.WriteLine($"{enemy.Name} - Оставшееся здоровье: {enemy.Hp}");
             WeaponPlayer.Durability--;
+        }
+
+        public void ShowStats()
+        {
+            Console.WriteLine($"\nИГРОК\n{Program.Separator}\nЗдоровье: {Hp}/{MaxHp}");
+            ArmorPlayer.Info();
+            WeaponPlayer.Info();
+            Console.WriteLine(Program.Separator);
+        }
+
+        public void Heal()
+        {
+            Hp = MaxHp;
+            Console.WriteLine("Здоровье восстановлено!");
         }
     }
 }

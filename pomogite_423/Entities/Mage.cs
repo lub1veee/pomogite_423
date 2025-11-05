@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace pomogite_423.Entities
+namespace pomogite_423
 {
     internal class Mage : Enemy
     {
@@ -12,7 +12,7 @@ namespace pomogite_423.Entities
         public Mage(Random random) : base(random)
         {
             Name = "Маг";
-            Hp = 42;
+            Hp = 23;
             Damage = 12;
             Protection = 4;
             _freezeChance = 0.1;
@@ -20,7 +20,11 @@ namespace pomogite_423.Entities
 
         public override void AttackPlayer()
         {
-            if(_random.NextDouble() <= _freezeChance) Player.Instance.IsFreezed = true;
+            if(_random.NextDouble() <= _freezeChance)
+            {
+                Player.Instance.IsFreezed = true;
+                Console.WriteLine($"{Name} заморозил вас!\nВы пропустите ход!\n{Program.Separator}");
+            }
 
             Player.Instance.GetDamage(Damage);  
         }

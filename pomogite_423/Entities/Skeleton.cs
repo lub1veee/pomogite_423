@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace pomogite_423.Entities
+namespace pomogite_423
 {
     internal class Skeleton : Enemy
     {
@@ -12,8 +12,8 @@ namespace pomogite_423.Entities
         {
             Name = "Скелет";
             Hp = 25;
-            Damage = 10;
-            Protection = 5;
+            Damage = 7;
+            Protection = 3;
         }
 
         public override void AttackPlayer() =>

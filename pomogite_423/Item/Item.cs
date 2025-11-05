@@ -10,5 +10,11 @@ namespace pomogite_423
     {
         public string Name;
         public int Durability;
+
+        public Item(string name = "", int durability = 100)
+        {
+            Name = name;
+            Durability = durability;
+        }
     }
 }

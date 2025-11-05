@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace pomogite_423.Entities.Bosses
+namespace pomogite_423
 {
     internal class PestovCMM : Skeleton
     {
@@ -12,6 +12,7 @@ namespace pomogite_423.Entities.Bosses
         public PestovCMM(Random random) : base(random)
         {
             Skeleton pestov = new Skeleton(random);
+            Name = "Босс Пестов С--";
             Hp = (int)(pestov.Hp * 1.3);
             Damage = (int)(pestov.Damage * 1.8);
             Protection = (int)(pestov.Protection * 0.6);
@@ -22,7 +23,11 @@ namespace pomogite_423.Entities.Bosses
         public override void AttackPlayer()
         {
             Player.Instance.BrakeArmorAndGetDamage(Damage);
-            if (_random.NextDouble() <= _freezeChance) Player.Instance.IsFreezed = true;
+            if (_random.NextDouble() <= _freezeChance)
+            {
+                Player.Instance.IsFreezed = true;
+                Console.WriteLine($"{Name} заморозил вас!\nВы пропустите ход!\n{Program.Separator}");
+            }
         }
     }
 }

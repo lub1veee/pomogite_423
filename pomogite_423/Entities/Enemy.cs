@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace pomogite_423.Entities
+namespace pomogite_423
 {
     internal abstract class Enemy : Entity
     {
@@ -17,16 +17,22 @@ namespace pomogite_423.Entities
             Damage = damage;
             Name = name;
             Protection = protection;
-            
         }
 
         public abstract void AttackPlayer();
         
-        public override void GetDamage(int damage)
+        public override int GetDamage(int damage)
         {
-            Hp -= damage - Protection;
+            damage = damage - Protection;
+            if (damage <= 0) damage = 1;
+            Hp -= damage;
+            if(Hp <= 0) Hp = 0;
+            return damage;
         }
 
-
+        public void Introduce()
+        {
+            Console.WriteLine($"ВРАГ\n{Program.Separator}\n{Name}\nЗдоровье: {Hp}\nУрон: {Damage}\n{Program.Separator}");
+        }
     }
 }
