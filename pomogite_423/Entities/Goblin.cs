@@ -9,19 +9,20 @@ namespace pomogite_423.Entities
     internal class Goblin : Enemy
     {
         protected double CritChance;
-        Random random = new();
-        public Goblin() : base()
+        public Goblin(Random random) : base(random)
         {
             Name = "Гоблин";
             Hp = 30;
             Damage = 15;
             Protection = 7;
             CritChance = 0.2;
+
+            _random = random;
         }
 
         public override void AttackPlayer()
         {
-            if (random.NextDouble() <= CritChance) Player.Instance.GetDamage(Damage * 2);
+            if (_random.NextDouble() <= CritChance) Player.Instance.GetDamage(Damage * 2);
             else Player.Instance.GetDamage(Damage);
         }
     }

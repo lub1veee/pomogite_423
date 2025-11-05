@@ -8,9 +8,9 @@ namespace pomogite_423.Entities.Bosses
 {
     internal class Kovalsky : Skeleton
     {
-        public Kovalsky() 
+        public Kovalsky(Random random) : base(random) 
         {
-            Skeleton skeleton = new Skeleton();
+            Skeleton skeleton = new Skeleton(random);
             Hp = (int)(skeleton.Hp * 2.5);
             Damage = (int)(skeleton.Damage * 1.3);
             Protection = (int)(skeleton.Protection * 1.4);

@@ -8,9 +8,9 @@ namespace pomogite_423.Entities.Bosses
 {
     internal class ArchimageCPP : Mage
     {
-        public ArchimageCPP()
+        public ArchimageCPP(Random random) : base(random)
         {
-            Mage mage = new Mage();
+            Mage mage = new Mage(random);
             Hp = (int)(mage.Hp * 1.8);
             Damage = (int)(mage.Damage * 1.6);
             Protection = (int)(mage.Protection * 1.1);

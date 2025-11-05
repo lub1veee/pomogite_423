@@ -10,19 +10,21 @@ namespace pomogite_423.Entities
     {
         public Armor ArmorPlayer;
         public Weapon WeaponPlayer;
-
+#pragma warning disable
         public static Player Instance;
 
         private bool _armorBroken = false;
 
         public bool IsFreezed = false;
 
-        public Player(Armor armorPlayer, Weapon weaponPlayer, int hp = 100, int damage = 5) : base(hp, damage)
+        public Player(Random random, Armor armorPlayer, Weapon weaponPlayer, int hp = 100, int damage = 5) : base(random, hp, damage)
         {
             Hp = hp;
             Damage = damage;
             ArmorPlayer = armorPlayer;
             WeaponPlayer = weaponPlayer;
+
+            _random = random;
         }
 
         public void Initialize()

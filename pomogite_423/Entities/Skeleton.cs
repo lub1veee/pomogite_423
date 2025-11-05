@@ -8,7 +8,7 @@ namespace pomogite_423.Entities
 {
     internal class Skeleton : Enemy
     {
-        public Skeleton()
+        public Skeleton(Random random) : base(random)
         {
             Name = "Скелет";
             Hp = 25;

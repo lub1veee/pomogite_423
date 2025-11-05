@@ -9,9 +9,9 @@ namespace pomogite_423.Entities.Bosses
     internal class PestovCMM : Skeleton
     {
         private double _freezeChance;
-        public PestovCMM()
+        public PestovCMM(Random random) : base(random)
         {
-            Skeleton pestov = new Skeleton();
+            Skeleton pestov = new Skeleton(random);
             Hp = (int)(pestov.Hp * 1.3);
             Damage = (int)(pestov.Damage * 1.8);
             Protection = (int)(pestov.Protection * 0.6);
