@@ -14,6 +14,8 @@ namespace pomogite_423.Entities.Bosses
             Hp = (int)(mage.Hp * 1.8);
             Damage = (int)(mage.Damage * 1.6);
             Protection = (int)(mage.Protection * 1.1);
+
+            _freezeChance += 0.1;
         }
     }
 }

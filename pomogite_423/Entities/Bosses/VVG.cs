@@ -14,6 +14,7 @@ namespace pomogite_423.Entities.Bosses
             Hp = (int)(goblin.Hp * 2.0);
             Damage = (int)(goblin.Damage * 1.5);
             Protection = (int)(goblin.Protection * 1.2);
+            CritChance = CritChance * 1.1;
         }
     }
 }

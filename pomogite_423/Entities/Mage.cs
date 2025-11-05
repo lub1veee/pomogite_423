@@ -9,8 +9,6 @@ namespace pomogite_423.Entities
     internal class Mage : Enemy
     {
         protected double _freezeChance;
-
-        Random random = new Random();
         public Mage()
         {
             Name = "Маг";
@@ -22,7 +20,7 @@ namespace pomogite_423.Entities
 
         public override void AttackPlayer()
         {
-            if(random.NextDouble() <= _freezeChance) Player.Instance.IsFreezed = true;
+            if(_random.NextDouble() <= _freezeChance) Player.Instance.IsFreezed = true;
 
             Player.Instance.GetDamage(Damage);  
         }
