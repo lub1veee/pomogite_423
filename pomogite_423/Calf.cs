@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace pomogite_423
 {
-    public class Calf
+    public class Calf : Animal
     {
-        public string AnimalType = "Теленок";
+        public Calf(string name, int age, int weight)
+        {
+            Name = name;
+            Age = age;
+            Weight = weight;
+            AnimalType = "Теленок";
+        }
     }
 }

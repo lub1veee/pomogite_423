@@ -8,15 +8,18 @@ namespace pomogite_423
 {
     public abstract class Animal
     {
-
-        List<string> animals = new List<string>();
-
         public string Name;
         public int Age;
-        public int Weught;
-        
-        
+        public int Weight;
+        public string AnimalType;
+       
 
-
+        public void Info()
+        {
+            Console.WriteLine($"Имя {Name}");
+            Console.WriteLine($"Тип {AnimalType}");
+            Console.WriteLine($"Возраст {Age}");
+            Console.WriteLine($"Вес: {Weight}");
+        }
     }
 }

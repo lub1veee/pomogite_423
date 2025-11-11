@@ -8,9 +8,12 @@ namespace pomogite_423
 {
     public class Cow : Animal
     {
-        public string AnimalType = "Корова";
-
-
-
+        public Cow(string name, int age, int weight)
+        {
+            Name = name;
+            Age = age;
+            Weight = weight;
+            AnimalType = "Корова";
+        }
     }
 }
