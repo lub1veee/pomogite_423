@@ -4,10 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-class Program()
+namespace pomogite_423
 {
-    int Main()
+    public class Cow : Animal
     {
+        public string AnimalType = "Корова";
+
+
 
     }
 }
