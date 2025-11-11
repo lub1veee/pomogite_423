@@ -6,27 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    internal class Detail
+    internal class Game
     {
-
-
-
-
-
-
-
-
-
-        public void ShowDetail()
-        {
-
-        }
-
-        public void AddDetail()
-        {
-
-        }
-
-         
     }
 }
