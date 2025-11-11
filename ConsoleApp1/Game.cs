@@ -8,5 +8,18 @@ namespace ConsoleApp1
 {
     internal class Game
     {
+
+
+
+
+
+
+
+        public void StartGame()
+        {
+
+        }
     }
+
+    
 }
