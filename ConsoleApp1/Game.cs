@@ -240,11 +240,24 @@ namespace ConsoleApp1
             ShowBalance();
         }
 
+        #endregion
 
+        #region DetailsManagement
         private void RepairDetail(Detail detail)
+        {
+            if (detail.Quantity <= 0) { return; }
+            detail.Quantity -= 1;
+            Balance += CalculateReplacing(detail);
+            Console.WriteLine($"Замена детали: {detail.Name}");
+            ShowBalance();
+            WaitForUser();
+        }
 
 
         private void ShowAllDetailsQuantity()
+        {
+
+        }
 
 
         private void ShowDetailsQuantity(Detail detail)
