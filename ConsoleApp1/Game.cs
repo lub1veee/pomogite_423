@@ -26,6 +26,13 @@ namespace ConsoleApp1
             }
 
             private void PayFine()
+
+
+
+            private void ShowBalance()
+
+
+
         }
     }
         
