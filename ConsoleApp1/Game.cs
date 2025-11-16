@@ -169,6 +169,19 @@ namespace ConsoleApp1
 
 
         public void ManageOrders()
+        {
+            List<Order> ordersToRemove = new();
+            foreach (Order order in _orders)
+            {
+                order.TurnsToDelive--;
+                if (order.TurnsToDelive <= 0) ordersToRemove.Add(order);
+            }
+            foreach (Order order in ordersToRemove)
+            {
+                DeliveOrder(order);
+                _orders.Remove(order);
+            }
+        }
 
 
         private void DeliveOrder(Order order)
