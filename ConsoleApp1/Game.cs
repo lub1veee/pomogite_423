@@ -51,6 +51,9 @@ namespace ConsoleApp1
             private void CancelOrder()
 
 
+            public void CompensateDamage(Part part)
+
+
 
 
 
