@@ -46,44 +46,51 @@ namespace ConsoleApp1
                 ChooseMenu(part);
             }
 
-        private void ChooseMenu(Detail detail)
-        {
-             Console.Clear();
-             Console.WriteLine($"Деталь: {detail.Name}. Стоимость ремонта: {detail.Price + detail.RepairFee}.");
+            private void ChooseMenu(Detail detail)
+            {
+                Console.Clear();
+                Console.WriteLine($"Деталь: {detail.Name}. Стоимость ремонта: {detail.Price + detail.RepairFee}.");
 
-             Console.WriteLine("0. Заказать деталь\n1. Все детали\n2. Принять заказ\n3. Отказаться (Штраф)");
+                Console.WriteLine("0. Заказать деталь\n1. Все детали\n2. Принять заказ\n3. Отказаться (Штраф)");
 
-             bool pick = false;
-             while (!pick)
-             {
-                  pick = true;
-                  ConsoleKey key = Console.ReadKey().Key;
-                  Console.Clear();
-                  switch (key)
-                  {
-                      case (ConsoleKey.D0):
-                          ShowOrderMenu();
-                          ChooseMenu(detail);
-                          break;
-                      case (ConsoleKey.D1):
-                          ShowAllDetailsQuantity();
-                          ChooseMenu(detail);
-                          break;
-                      case (ConsoleKey.D2):
-                          ClaimOrder(detail);
-                          break;
-                      case (ConsoleKey.D3):
-                          CancelOrder();
-                          break;
-                      default:
-                          pick = false;
-                          break;
+                bool pick = false;
+                while (!pick)
+                {
+                    pick = true;
+                    ConsoleKey key = Console.ReadKey().Key;
+                    Console.Clear();
+                    switch (key)
+                    {
+                        case (ConsoleKey.D0):
+                            ShowOrderMenu();
+                            ChooseMenu(detail);
+                            break;
+                        case (ConsoleKey.D1):
+                            ShowAllDetailsQuantity();
+                            ChooseMenu(detail);
+                            break;
+                        case (ConsoleKey.D2):
+                            ClaimOrder(detail);
+                            break;
+                        case (ConsoleKey.D3):
+                            CancelOrder();
+                            break;
+                        default:
+                            pick = false;
+                            break;
                     }
                 }
             }
+        }
+        #region Features
 
         private void LoseGame()
-        { 
+        {
+            ShowBalance();
+            Console.WriteLine("Игра окончена, вы в долговой яме.\nСкинуть деньги с вашей карты мне - 1");
+            Console.ReadKey();
+
+            throw new Exception("GG");
 
         }
 
