@@ -48,6 +48,9 @@ namespace ConsoleApp1
              private void ClaimOrder(Part part)
 
 
+            private void CancelOrder()
+
+
 
 
 
