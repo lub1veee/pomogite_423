@@ -95,6 +95,11 @@ namespace ConsoleApp1
         }
 
         private void PayFine()
+        {
+            Console.WriteLine($"Вы оплатили штраф в размере {FINE} руб.");
+            Balance -= FINE;
+            ShowBalance();
+        }
 
 
 
