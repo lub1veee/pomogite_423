@@ -256,7 +256,11 @@ namespace ConsoleApp1
 
         private void ShowAllDetailsQuantity()
         {
-
+            int count = 0;
+            foreach (Detail part in _details)
+            {
+                ShowDetailsQuantity(part);
+            }
         }
 
 
