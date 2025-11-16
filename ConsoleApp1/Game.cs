@@ -54,6 +54,9 @@ namespace ConsoleApp1
             public void CompensateDamage(Part part)
 
 
+            private void RepairPart(Part part)
+
+
 
 
 
