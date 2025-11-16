@@ -14,6 +14,11 @@ namespace ConsoleApp1
             {
 
             }
+
+            private void ChooseMenu(Part part)
+            {
+
+            }
         }
     }
         
