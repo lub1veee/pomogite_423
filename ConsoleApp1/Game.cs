@@ -37,6 +37,12 @@ namespace ConsoleApp1
 
 
               private void ShowOrderMenu()
+
+
+             public void ManageOrders()
+
+
+
         }
     }
         
