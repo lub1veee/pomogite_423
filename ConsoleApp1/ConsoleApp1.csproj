@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Order.cs" />
     <Compile Include="tables\AutoServiceContext.cs" />
+    <Compile Include="tables\CustomerHistory.cs" />
     <Compile Include="tables\Detail.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Program.cs" />
