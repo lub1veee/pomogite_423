@@ -8,5 +8,6 @@ namespace ConsoleApp1.tables
 {
     internal class Core
     {
+        public static AutoServiceContext Context = new AutoServiceContext();
     }
 }

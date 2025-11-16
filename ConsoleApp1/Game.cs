@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleApp1.tables;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,10 @@ namespace ConsoleApp1
                     if (balance < 0) LoseGame();
                 }
             }
+        }
+        private List<Detail> _details = Core.Context.Details.ToList();
+
+        private List<Order> _orders = new List<Order>()
         public void StartGame()
         {
 
