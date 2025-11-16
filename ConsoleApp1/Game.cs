@@ -233,6 +233,12 @@ namespace ConsoleApp1
 
 
         public void CompensateDamage(Detail detail)
+        {
+            decimal compensation;
+            compensation = (CalculateReplacing(detail) / 2) + (FINE * 2);
+            Console.WriteLine($"Размер компенсации: {compensation}");
+            ShowBalance();
+        }
 
 
         private void RepairDetail(Detail detail)
