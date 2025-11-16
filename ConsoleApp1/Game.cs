@@ -271,11 +271,15 @@ namespace ConsoleApp1
 
 
         private decimal CalculateReplacing(Detail detail)
+        {
+            return detail.Price + detail.RepairFee;
+        }
 
+        #endregion
 
 
     }
-        
 
-    
+
+
 }
