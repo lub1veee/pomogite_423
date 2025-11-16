@@ -22,5 +22,5 @@ namespace ConsoleApp1.tables
 
         public virtual Detail DetailNeededNavigation { get; set; } = null!;
     }
-    \
+    
 }
