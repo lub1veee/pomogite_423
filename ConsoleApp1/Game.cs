@@ -265,6 +265,9 @@ namespace ConsoleApp1
 
 
         private void ShowDetailsQuantity(Detail detail)
+        {
+            Console.WriteLine($"{detail.Id}. {detail.Name}: {detail.Quantity} шт.\n");
+        }
 
 
         private decimal CalculateReplacing(Detail detail)
