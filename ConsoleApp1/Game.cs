@@ -19,6 +19,11 @@ namespace ConsoleApp1
             {
 
             }
+
+            private void LoseGame()
+            {
+
+            }
         }
     }
         
