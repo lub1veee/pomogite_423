@@ -31,13 +31,22 @@ namespace ConsoleApp1
         }
         private List<Detail> _details = Core.Context.Details.ToList();
 
-        private List<Order> _orders = new List<Order>()
+        private List<Order> _orders = new List<Order>();
         public void StartGame()
         {
+            Balance = START_BALANCE;
+            WaitForUser();
+            _currentTurn = 0;
+            while (true)
+            {
+                _currentTurn++;
+                ManageOrders();
+                Console.WriteLine($"День {_currentTurn}\nУ вас новый клиент!");
+                Detail detail = GetRandomPart();
+                ChooseMenu(part);
+            }
 
-        }
-
-        private void ChooseMenu(Part part)
+        private void ChooseMenu(Detail detail)
         { 
 
         }
