@@ -218,12 +218,18 @@ namespace ConsoleApp1
             else
             {
                 Console.WriteLine("Успешная замена!");
-                RepairPart(part);
+                RepairDetail(detail);
             }
         }
 
 
         private void CancelOrder()
+        {
+            Console.Clear();
+            Console.WriteLine($"Заказ отменен");
+            PayFine();
+            WaitForUser();
+        }
 
 
         public void CompensateDamage(Detail detail)
