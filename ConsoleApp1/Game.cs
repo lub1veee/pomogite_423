@@ -104,6 +104,9 @@ namespace ConsoleApp1
 
 
         private void ShowBalance()
+        {
+            Console.WriteLine($"Текущий баланс:{Balance}");
+        }
 
 
         public static void WaitForUser()
