@@ -60,6 +60,9 @@ namespace ConsoleApp1
             private void ShowAllDetailsQuantity()
 
 
+            private void ShowDetailsQuantity(Part part)
+
+
 
 
 
