@@ -32,7 +32,7 @@ namespace ConsoleApp1
             private void ShowBalance()
 
 
-
+            public static void WaitForUser()
         }
     }
         
