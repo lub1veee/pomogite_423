@@ -42,6 +42,11 @@ namespace ConsoleApp1
              public void ManageOrders()
 
 
+             private void DeliveOrder(Order order)
+
+
+
+
 
         }
     }
