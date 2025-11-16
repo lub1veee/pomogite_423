@@ -110,10 +110,62 @@ namespace ConsoleApp1
 
 
         public static void WaitForUser()
+        {
+            Console.WriteLine("Нажмите любую клавишу для продолжения...");
+            Console.ReadKey();
+            Console.Clear();
+        }
 
+        #endregion
 
+        #region Delivery
 
         private void ShowOrderMenu()
+        {
+            Console.WriteLine("МЕНЮ ЗАКАЗА ДЕТАЛЕЙ");
+
+            ShowAllDetailsQuantity();
+            while (true)
+            {
+                Console.WriteLine($"Введите ID детали из списка для заказа (0 - Назад)");
+                int.TryParse(Console.ReadLine(), out int ans);
+
+                if (ans == 0) break;
+                Detail detail = _details.FirstOrDefault(p => p.Id == ans);
+                ans = -1;
+
+                if (detail != null)
+                {
+                    Console.WriteLine("Введите необходимое количество:");
+                    int.TryParse(Console.ReadLine(), out ans);
+
+                    decimal orderPrice = ans * detail.Price;
+                    Console.WriteLine($"Сумма заказа: {orderPrice} руб.");
+                    if (Balance >= orderPrice)
+                    {
+                        Console.WriteLine("Нажмите 1 для подтверждения");
+                        if (Console.ReadKey().Key == ConsoleKey.D1)
+                        {
+                            Balance -= orderPrice;
+                            _orders.Add(new Order(part, ans));
+                            ShowBalance();
+                        }
+                        else ShowOrderMenu();
+                    }
+                    else
+                    {
+                        Console.WriteLine("Недостаточно средств");
+                        ShowBalance();
+                        ShowOrderMenu();
+                    }
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Неверный ID!");
+                }
+            }
+        }
 
 
         public void ManageOrders()
