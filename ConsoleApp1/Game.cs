@@ -192,8 +192,35 @@ namespace ConsoleApp1
             ShowDetailsQuantity(order.detail);
         }
 
+        #endregion
 
+        #region ClientOrder
         private void ClaimOrder(Detail detail)
+        {
+            if (detail.Quantity <= 0)
+            {
+                if (_details.First(q => q.Quantity > 0) != null)
+                {
+                    while (true)
+                    {
+                        detail = _details[random.Next(0, _details.Count)];
+                        if (detail.Quantity > 0) break;
+                    }
+                    RepairDetail(detail);
+                    CompensateDamage(detail);
+                }
+                else
+                {
+                    Console.WriteLine("На складе нет деталей!");
+                    PayFine();
+                }
+            }
+            else
+            {
+                Console.WriteLine("Успешная замена!");
+                RepairPart(part);
+            }
+        }
 
 
         private void CancelOrder()
