@@ -45,6 +45,9 @@ namespace ConsoleApp1
              private void DeliveOrder(Order order)
 
 
+             private void ClaimOrder(Part part)
+
+
 
 
 
