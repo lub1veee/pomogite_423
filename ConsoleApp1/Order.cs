@@ -8,5 +8,14 @@ namespace ConsoleApp1
 {
     internal class Order
     {
+
+
+
+
+
+        public void GetInfo()
+        {
+
+        }
     }
 }
