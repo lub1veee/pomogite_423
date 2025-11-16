@@ -185,27 +185,33 @@ namespace ConsoleApp1
 
 
         private void DeliveOrder(Order order)
+        {
+            Console.WriteLine($"!!! Заказ {order.Id} доставлен. !!!");
+            order.detail.Quantity += order.PartQuantity;
+
+            ShowDetailsQuantity(order.detail);
+        }
 
 
-        private void ClaimOrder(Part part)
+        private void ClaimOrder(Detail detail)
 
 
         private void CancelOrder()
 
 
-        public void CompensateDamage(Part part)
+        public void CompensateDamage(Detail detail)
 
 
-        private void RepairDetail(Part part)
+        private void RepairDetail(Detail detail)
 
 
         private void ShowAllDetailsQuantity()
 
 
-        private void ShowDetailsQuantity(Part part)
+        private void ShowDetailsQuantity(Detail detail)
 
 
-        private decimal CalculateReplacing(Part part)
+        private decimal CalculateReplacing(Detail detail)
 
 
 
