@@ -63,6 +63,9 @@ namespace ConsoleApp1
             private void ShowDetailsQuantity(Part part)
 
 
+            private decimal CalculateReplacing(Part part)
+
+
 
 
 
