@@ -24,6 +24,8 @@ namespace ConsoleApp1
             {
 
             }
+
+            private void PayFine()
         }
     }
         
