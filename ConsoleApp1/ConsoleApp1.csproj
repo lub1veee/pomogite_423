@@ -44,14 +44,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Order.cs" />
-    <Compile Include="tables\AutoServiceContext.cs" />
     <Compile Include="tables\Core.cs" />
-    <Compile Include="tables\CustomerHistory.cs" />
-    <Compile Include="tables\Detail.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="tables\PurchaseOrder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -5,7 +5,7 @@ VisualStudioVersion = 17.14.36221.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pomogite_423", "pomogite_423\pomogite_423.csproj", "{F5E0CD85-7C74-45D6-812B-4D7D8F4BB518}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{AC702B93-75DA-424A-B9AF-D62DF7A51806}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pomogitee_423", "pomogitee_423\pomogitee_423.csproj", "{45DA61E5-3D58-4F1B-B4DB-D28F9D95DE63}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{F5E0CD85-7C74-45D6-812B-4D7D8F4BB518}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5E0CD85-7C74-45D6-812B-4D7D8F4BB518}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5E0CD85-7C74-45D6-812B-4D7D8F4BB518}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AC702B93-75DA-424A-B9AF-D62DF7A51806}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AC702B93-75DA-424A-B9AF-D62DF7A51806}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AC702B93-75DA-424A-B9AF-D62DF7A51806}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AC702B93-75DA-424A-B9AF-D62DF7A51806}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45DA61E5-3D58-4F1B-B4DB-D28F9D95DE63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45DA61E5-3D58-4F1B-B4DB-D28F9D95DE63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45DA61E5-3D58-4F1B-B4DB-D28F9D95DE63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45DA61E5-3D58-4F1B-B4DB-D28F9D95DE63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

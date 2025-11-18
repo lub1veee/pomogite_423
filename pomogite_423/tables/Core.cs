@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace pomogite_423
+namespace ConsoleApp1.tables
 {
-    internal class Program
+    internal class Core
     {
-        static void Main(string[] args)
-        {
-        }
+        public static AutoServiceContext Context = new AutoServiceContext();
     }
 }
