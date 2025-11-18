@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="77249ba287ad4b079be121dda8ee8274" Name="Diagram1">
+        <EntityTypeShape EntityType="GMWOGGModel.Cart" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GMWOGGModel.Goods" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GMWOGGModel.Office" Width="1.5" PointX="0.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GMWOGGModel.OrderGoods" Width="1.5" PointX="7.5" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GMWOGGModel.Orders" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GMWOGGModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GMWOGGModel.Users" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="GMWOGGModel.FK_Cart_Goods" ManuallyRouted="false" />
+        <AssociationConnector Association="GMWOGGModel.FK_Cart_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="GMWOGGModel.FK_OrderGoods_Goods" ManuallyRouted="false" />
+        <AssociationConnector Association="GMWOGGModel.FK_Orders_Office" ManuallyRouted="false" />
+        <AssociationConnector Association="GMWOGGModel.FK_Users_Office" ManuallyRouted="false" />
+        <AssociationConnector Association="GMWOGGModel.FK_OrderGoods_Orders" ManuallyRouted="false" />
+        <AssociationConnector Association="GMWOGGModel.FK_Orders_Users" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
