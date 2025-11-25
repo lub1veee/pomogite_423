@@ -109,6 +109,27 @@ namespace pomogitee
 
         private void SignIn()
         {
+            while (true)
+            {
+                Menu.Header("ВХОД");
+
+                string login = Menu.WriteRead("Логин: ");
+                string password = Menu.WriteRead("Пароль: ");
+
+                if (password == "" || login == "") StartMenu();
+
+                Users user = Core.Context.Users.ToList().FirstOrDefault(u => u.Login == login);
+
+                if (user == null) continue;
+                if (user.Password != password)
+                    Console.WriteLine("Неверный логин или пароль");
+                else
+                {
+                    CurrentUser = user;
+                    Console.WriteLine("Вход успешный!");
+                    StartMenu();
+                }
+            }
         }
 
         private void ShowGoods()
