@@ -63,9 +63,72 @@ namespace pomogitee
 
         private void SignUp()
         {
+            Menu.Header("Регистрация");
+
+            Users user = new Users();
+
+
+            bool successSignIn = false;
+            while (!successSignIn)
+            {
+                user.Login = Menu.WriteRead("Введите логин: ");
+                if (user.Login != null &&
+                    Core.Context.Users.ToList().FirstOrDefault(u => u.Login == user.Login) == null)
+                    successSignIn = true;
+            }
+
+            user.Name = Menu.WriteRead("Введите имя пользователя: ");
+            user.PhoneNumber = Menu.WriteRead("Введите номер телефона: ");
+            string password;
+            string acceptPassword;
+
+            do
+            {
+                password = Menu.WriteRead("Введите пароль: ");
+                acceptPassword = Menu.WriteRead("Введите пароль повторно: ");
+
+                if (password != acceptPassword)
+                {
+                    Console.WriteLine("Пароли не совпадают");
+
+                }
+            } while (password != acceptPassword);
+
+            user.Password = password;
+
+            Core.Context.Users.Add(user);
+
+            Core.Context.SaveChanges();
+
+            Console.WriteLine("Вы зарегистрированы");
+
+            CurrentUser = user;
+            Console.ReadKey();
+            ShowGoods();
+        }
+
+        private void SignIn()
+        {
+        }
+
+        private void ShowGoods()
+        {
 
         }
 
-        pr
+        private void ShowCart() 
+        {
+
+        }
+
+        private void ShowOrders()
+        {
+
+        }
+
+        private void ChooseOffice()
+        {
+
+        }
     }
 }
