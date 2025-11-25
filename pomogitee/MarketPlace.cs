@@ -189,7 +189,49 @@ namespace pomogitee
         }
         private void ProductMenu(Goods product)
         {
-           
+            Menu.Header($"{product.Name}");
+            Console.WriteLine($"Стоимость: {product.Price} руб.\nОписание: {product.Discription}");
+            Menu.Separator();
+
+            if (CurrentUser != null)
+            {
+                Menu.ShowPick("Купить", "Добавить в корзину", "Вернуться к товарам", "Просмотреть корзину");
+            }
+            else
+            {
+                Menu.ShowPick("Купить", "Добавить в корзину", "Вернуться к товарам");
+            }
+
+            while (true)
+            {
+                switch (Console.ReadKey().Key)
+                {
+                    case ConsoleKey.D1:
+                        BuyGoods(product);
+                        break;
+                    case ConsoleKey.D2:
+                        AddToCart(product);
+                        break;
+                    case ConsoleKey.D3:
+                        ShowGoods();
+                        return;
+                    case ConsoleKey.D4:
+                        if (CurrentUser != null)
+                        {
+                            ShowCart();
+                            return;
+                        }
+                        break;
+                    case ConsoleKey.D0:
+                        ShowGoods();
+                        return;
+                    case ConsoleKey.Enter:
+                        ShowGoods();
+                        return;
+                    default:
+                        break;
+                }
+            }
         }
 
         private void BuyGoods(Goods product)
