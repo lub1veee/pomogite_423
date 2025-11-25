@@ -20,7 +20,7 @@ namespace pomogitee
         }
         public static void Separator()
         {
-            Console.WriteLine(new string('=', 40));
+            Console.WriteLine(new string('-', 40));
         }
 
         public static void Header(string headername)

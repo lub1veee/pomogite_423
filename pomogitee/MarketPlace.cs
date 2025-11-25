@@ -134,6 +134,71 @@ namespace pomogitee
 
         private void ShowGoods()
         {
+            while (true)
+            {
+                Menu.Header("ПРОСМОТР ТОВАРОВ");
+
+                List<Goods> goods = Core.Context.Goods.ToList();
+
+                foreach (Goods g in goods)
+                {
+                    Console.WriteLine($"{g.Id}. {g.Name}: {g.Price} руб.");
+                }
+
+                Menu.Separator();
+                Console.WriteLine("0 - Вернуться в меню");
+                if (CurrentUser != null)
+                {
+                    Console.WriteLine("9 - Просмотреть корзину");
+                }
+                Menu.Separator();
+
+                string input = Menu.WriteRead("Введите ID товара или команду: ");
+
+                if (input == "0")
+                {
+                    StartMenu();
+                    return;
+                }
+                else if (CurrentUser != null && input == "9")
+                {
+                    ShowCart();
+                    return;
+                }
+
+                int id;
+                try
+                {
+                    id = int.Parse(input);
+                }
+                catch
+                {
+                    continue;
+                }
+
+                Goods p = goods.FirstOrDefault(g => g.Id == id);
+                if (p == null)
+                {
+                    Console.WriteLine("Неверный ID товара");
+                    continue;
+                }
+
+                ProductMenu(p);
+                break;
+            }
+        }
+        private void ProductMenu(Goods product)
+        {
+           
+        }
+
+        private void BuyGoods(Goods product)
+        {
+
+        }
+
+        private void AddToCart(Goods product)
+        {
 
         }
 
