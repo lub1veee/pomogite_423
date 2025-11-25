@@ -54,9 +54,11 @@
     <Compile Include="Cart.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Core.cs" />
     <Compile Include="Goods.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="MarketPlace.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="Model.Context.cs">
       <AutoGen>True</AutoGen>

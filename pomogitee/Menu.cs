@@ -31,5 +31,11 @@ namespace pomogitee
             Separator();
         }
 
+        public static string WriteRead(string Q)
+        {
+            Console.Write(Q);
+            string ans = Console.ReadLine();
+            return ans;
+        }
     }
 }
