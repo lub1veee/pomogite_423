@@ -233,9 +233,9 @@ namespace pomogitee
                 }
             }
         }
-
-       // private void BuyGoods(Goods product)
-        {
+        
+         private void BuyGoods(Goods product)
+         {
             if (!CheckSignIn())
             {
                 Console.WriteLine("Для покупки необходимо войти в аккаунт!");
@@ -284,6 +284,7 @@ namespace pomogitee
                 ShowGoods();
             }
         }
+        //
         private void AddToCart(Goods product)
         {
             if (!CheckSignIn())
