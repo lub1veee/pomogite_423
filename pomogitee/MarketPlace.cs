@@ -343,7 +343,7 @@ namespace pomogitee
         {
 
         }
-        //
+        
         private Office ChooseOffice()
         {
             Menu.Header("ВЫБОР ПУНКТА ВЫДАЧИ");
@@ -381,6 +381,7 @@ namespace pomogitee
 
             return selectedOffice;
         }
+
 
         private void ShowAllOffices()
         {
