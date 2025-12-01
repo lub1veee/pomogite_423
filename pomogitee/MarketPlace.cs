@@ -234,16 +234,105 @@ namespace pomogitee
             }
         }
 
-        private void BuyGoods(Goods product)
+       // private void BuyGoods(Goods product)
         {
+            if (!CheckSignIn())
+            {
+                Console.WriteLine("Для покупки необходимо войти в аккаунт!");
+                StartMenu();
+            }
+            else
+            {
+                if (CurrentUser.Office == null)
+                {
+                    Console.WriteLine("Сначала выберите пункт выдачи!");
+                    ChooseOffice();
+                    return;
+                }
 
+                Orders order = new Orders();
+                order.IdUsers = CurrentUser.Id;
+                order.IdOffice = CurrentUser.Office.Id;
+                order.Date = DateTime.Now;
+
+                Core.Context.Orders.Add(order);
+                Core.Context.SaveChanges();
+
+                OrderGoods og = new OrderGoods();
+                og.IdGoods = product.Id;
+                og.IdOrders = order.Id;
+
+                try
+                {
+                    og.Quantity = int.Parse(Menu.WriteRead("Введите количество товаров:"));
+                }
+                catch
+                {
+                    Console.WriteLine("Неверное количество!");
+                    return;
+                }
+
+                Console.WriteLine($"Вы покупаете {og.Quantity} {product.Name}\nСтоимость покупки: {product.Price * og.Quantity}");
+
+                Menu.WriteRead("Нажмите Enter для подтверждения покупки...");
+
+                Core.Context.OrderGoods.Add(og);
+                Core.Context.SaveChanges();
+
+                Console.WriteLine("Покупка совершена!");
+                Menu.WriteRead("Нажмите любую клавишу для продолжения...");
+                ShowGoods();
+            }
         }
-
         private void AddToCart(Goods product)
         {
+            if (!CheckSignIn())
+            {
+                Console.WriteLine("Для добавления в корзину необходимо войти в аккаунт!");
+                StartMenu();
+                return;
+            }
 
+            if (IfInCart(product) == 0)
+            {
+                Cart cg = new Cart();
+
+                cg.IdUsers = CurrentUser.Id;
+                cg.IdGoods = product.Id;
+                try
+                {
+                    cg.Quantity = int.Parse(Menu.WriteRead("Введите количество: "));
+                }
+                catch
+                {
+                    Console.WriteLine("Неверное количество!");
+                    return;
+                }
+
+                Core.Context.Cart.Add(cg);
+                Core.Context.SaveChanges();
+                Console.WriteLine("Товар добавлен в корзину!");
+            }
+            else
+            {
+                Console.WriteLine("В корзине уже есть эти товары!");
+            }
+
+            Menu.WriteRead("Нажмите любую клавишу для продолжения...");
+            ProductMenu(product);
+        }
+        private int IfInCart(Goods product)
+        {
+            Cart god = Core.Context.Cart.FirstOrDefault(p => p.IdGoods == product.Id && p.IdUsers == CurrentUser.Id);
+
+            if (god == null) return 0;
+            else return god.Quantity;
         }
 
+        private bool CheckSignIn()
+        {
+            return CurrentUser != null;
+        }
         private void ShowCart() 
         {
 
@@ -254,9 +343,50 @@ namespace pomogitee
 
         }
 
-        private void ChooseOffice()
+        private Office ChooseOffice()
         {
+            Menu.Header("ВЫБОР ПУНКТА ВЫДАЧИ");
+            if (CurrentUser.Office != null)
+            {
+                Console.WriteLine("У вас уже есть выбранный пункт выдачи. (1 - выбрать другой)");
+                if (Console.ReadKey().Key != ConsoleKey.D1) return CurrentUser.Office;
+            }
+            ShowAllOffices();
 
+            int choose;
+            try
+            {
+                choose = int.Parse(Menu.WriteRead("Выберите номер офиса:"));
+            }
+            catch
+            {
+                Console.WriteLine("Неверный ввод!");
+                return ChooseOffice();
+            }
+
+            Office selectedOffice = Core.Context.Office.ToList().FirstOrDefault(o => o.Id == choose);
+
+            if (selectedOffice != null)
+            {
+                CurrentUser.Office = selectedOffice;
+                Core.Context.SaveChanges();
+                Console.WriteLine("Пункт выдачи выбран!");
+            }
+            else
+            {
+                Console.WriteLine("Неверный номер офиса!");
+                return ChooseOffice();
+            }
+
+            return selectedOffice;
+        }
+
+        private void ShowAllOffices()
+        {
+            foreach (Office office in Core.Context.Office.ToList())
+            {
+                Console.WriteLine($"{office.Id}. {office.Adress}");
+            }
         }
     }
 }
