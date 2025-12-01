@@ -336,6 +336,77 @@ namespace pomogitee
         }
         private void ShowCart() 
         {
+            Menu.Header("КОРЗИНА");
+
+            List<Cart> cart = Core.Context.Cart.Where(cg => cg.IdUsers == CurrentUser.Id).ToList();
+
+            if (cart.Count == 0)
+            {
+                Menu.WriteRead("Корзина пуста..");
+                Console.ReadKey();
+                StartMenu();
+                return;
+            }
+
+            List<Goods> goods = Core.Context.Goods.ToList();
+
+            Console.WriteLine("Товары в корзине:");
+            Menu.Separator();
+
+            decimal totalPrice = 0;
+            for (int i = 0; i < cart.Count; i++)
+            {
+                Cart c = cart[i];
+                Goods product = goods.First(g => g.Id == c.IdGoods);
+                decimal itemTotal = product.Price * c.Quantity;
+                totalPrice += itemTotal;
+
+                Console.WriteLine($"{i + 1}. {product.Name} | {c.Quantity} шт. | {itemTotal} руб.");
+            }
+
+            Menu.Separator();
+            Console.WriteLine($"Общая стоимость: {totalPrice} руб.");
+            Menu.Separator();
+
+            Menu.ShowPick("Заказать все товары из корзины", "Купить отдельный товар", "Очистить корзину", "Вернуться к товарам", "История заказов");
+
+            while (true)
+            {
+                switch (Console.ReadKey().Key)
+                {
+                    case ConsoleKey.D1:
+                        OrderAllFromCart(cart);
+                        break;
+                    case ConsoleKey.D2:
+                        BuySingleFromCart(cart);
+                        break;
+                    case ConsoleKey.D3:
+                        ClearCart();
+                        break;
+                    case ConsoleKey.D4:
+                        ShowGoods();
+                        return;
+                    case ConsoleKey.D5:
+                        ShowOrders();
+                        return;
+                    default:
+                        break;
+                }
+            }
+        }
+        
+        private void OrderAllFromCart()
+        {
+
+        }
+
+        private void BuySingleFromCart()
+        {
+
+        }
+
+        private void ClearCart()
+        {
 
         }
 
