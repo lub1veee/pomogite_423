@@ -284,7 +284,7 @@ namespace pomogitee
                 ShowGoods();
             }
         }
-        //
+        
         private void AddToCart(Goods product)
         {
             if (!CheckSignIn())
@@ -343,7 +343,7 @@ namespace pomogitee
         {
 
         }
-
+        //
         private Office ChooseOffice()
         {
             Menu.Header("ВЫБОР ПУНКТА ВЫДАЧИ");
