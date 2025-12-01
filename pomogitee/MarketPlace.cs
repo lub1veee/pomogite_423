@@ -395,13 +395,60 @@ namespace pomogitee
             }
         }
         
-        private void OrderAllFromCart()
+        private void OrderAllFromCart(List<Cart>cart)
         {
+            if (CurrentUser.Office == null)
+            {
+                Console.WriteLine("Сначала выберите пункт выдачи!");
+                ChooseOffice();
+                return;
+            }
 
+            Orders order = new Orders();
+            order.IdUsers = CurrentUser.Id;
+            order.IdOffice = CurrentUser.Office.Id;
+            order.Date = DateTime.Now;
+
+            Core.Context.Orders.Add(order);
+            Core.Context.SaveChanges();
+
+            List<Goods> goods = Core.Context.Goods.ToList();
+            decimal totalPrice = 0;
+
+            foreach (Cart cartItem in cart)
+            {
+                OrderGoods og = new OrderGoods();
+                og.IdGoods = cartItem.IdGoods;
+                og.IdOrders = order.Id;
+                og.Quantity = cartItem.Quantity;
+
+                Goods product = goods.First(g => g.Id == cartItem.IdGoods);
+                totalPrice += product.Price * cartItem.Quantity;
+
+                Core.Context.OrderGoods.Add(og);
+            }
+
+            // Очищаем корзину после заказа
+            Core.Context.Cart.RemoveRange(cart);
+            Core.Context.SaveChanges();
+
+            Console.WriteLine($"Заказ оформлен! Общая стоимость: {totalPrice} руб.");
+            Menu.WriteRead("Нажмите любую клавишу для продолжения...");
+            ShowCart();
         }
 
-        private void BuySingleFromCart()
+        private void BuySingleFromCart(List<Cart> cart)
         {
+            if (CurrentUser.Office == null)
+            {
+                Console.WriteLine("Сначала выберите пункт выдачи!");
+                ChooseOffice();
+                return;
+            }
+            Orders order = new Orders();
+            order.IdUsers = CurrentUser.Id;
+            order.IdOffice = CurrentUser.Office.Id;
+            order.Date = DateTime.Now;
 
         }
 
