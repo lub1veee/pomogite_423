@@ -439,17 +439,55 @@ namespace pomogitee
 
         private void BuySingleFromCart(List<Cart> cart)
         {
-            if (CurrentUser.Office == null)
+            try
             {
-                Console.WriteLine("Сначала выберите пункт выдачи!");
-                ChooseOffice();
-                return;
-            }
-            Orders order = new Orders();
-            order.IdUsers = CurrentUser.Id;
-            order.IdOffice = CurrentUser.Office.Id;
-            order.Date = DateTime.Now;
+                int choice = int.Parse(Menu.WriteRead("Введите номер товара для покупки: ")) - 1;
 
+                if (choice >= 0 && choice < cart.Count)
+                {
+                    Cart selectedItem = cart[choice];
+                    Goods product = Core.Context.Goods.First(g => g.Id == selectedItem.IdGoods);
+
+                    if (CurrentUser.Office == null)
+                    {
+                        Console.WriteLine("Сначала выберите пункт выдачи!");
+                        ChooseOffice();
+                        return;
+                    }
+
+                    Orders order = new Orders();
+                    order.IdUsers = CurrentUser.Id;
+                    order.IdOffice = CurrentUser.Office.Id;
+                    order.Date = DateTime.Now;
+
+                    Core.Context.Orders.Add(order);
+                    Core.Context.SaveChanges();
+
+                    OrderGoods og = new OrderGoods();
+                    og.IdGoods = selectedItem.IdGoods;
+                    og.IdOrders= order.Id;
+                    og.Quantity = selectedItem.Quantity;
+
+                    Core.Context.OrderGoods.Add(og);
+
+                    // Удаляем только выбранный товар из корзины
+                    Core.Context.Cart.Remove(selectedItem);
+                    Core.Context.SaveChanges();
+
+                    decimal totalPrice = product.Price * selectedItem.Quantity;
+                    Console.WriteLine($"Товар '{product.Name}' заказан! Стоимость: {totalPrice} руб.");
+                    Menu.WriteRead("Нажмите любую клавишу для продолжения...");
+                    ShowCart();
+                }
+                else
+                {
+                    Console.WriteLine("Неверный номер товара!");
+                }
+            }
+            catch
+            {
+                Console.WriteLine("Ошибка ввода!");
+            }
         }
 
         private void ClearCart()
