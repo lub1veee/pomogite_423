@@ -504,7 +504,6 @@ namespace pomogitee
             {
                 Console.WriteLine("Корзина уже пуста!");
             }
-
             Menu.WriteRead("Нажмите любую клавишу для продолжения...");
             ShowCart();
         }
