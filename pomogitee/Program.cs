@@ -19,7 +19,11 @@ namespace pomogitee
     {
         static void Main(string[] args)
         {
-
+            MarketPlace mp = new MarketPlace();
+            while (true)
+            {
+                mp.StartMenu();
+            }
         }
     }
 }
