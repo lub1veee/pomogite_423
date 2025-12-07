@@ -492,12 +492,41 @@ namespace pomogitee
 
         private void ClearCart()
         {
+            List<Cart> userCart = Core.Context.Cart.Where(cg => cg.IdUsers == CurrentUser.Id).ToList();
 
+            if (userCart.Count > 0)
+            {
+                Core.Context.Cart.RemoveRange(userCart);
+                Core.Context.SaveChanges();
+                Console.WriteLine("Корзина очищена!");
+            }
+            else
+            {
+                Console.WriteLine("Корзина уже пуста!");
+            }
+
+            Menu.WriteRead("Нажмите любую клавишу для продолжения...");
+            ShowCart();
         }
 
         private void ShowOrders()
         {
+            Menu.Header("ИСТОРИЯ ЗАКАЗОВ");
+            List<Orders> orders = Core.Context.Orders.Where(o => o.IdUsers == CurrentUser.Id).ToList();
+            List<OrderGoods> ogs = Core.Context.OrderGoods.ToList();
 
+            foreach (Orders o in orders)
+            {
+                List<OrderGoods> ordersGoods = ogs.Where(og => og.IdOrders == o.Id).ToList();
+                foreach (OrderGoods od in ordersGoods)
+                {
+                    Console.WriteLine($"Заказ {o.Id} | " +
+                        $"Товар: {Core.Context.Goods.ToList().First(g => g.Id == od.IdGoods).Name} | " +
+                        $"{od.Quantity} шт.");
+                }
+            }
+
+            StartMenu();
         }
         
         private Office ChooseOffice()
