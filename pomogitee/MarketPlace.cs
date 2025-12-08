@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -37,9 +38,11 @@ namespace pomogitee
             }
             else
             {
-                Menu.ShowPick("Просмотр товаров", "Корзина", "Выбрать пункт выдачи", "История заказов");
+                
                 while (true)
                 {
+                    Menu.Header("Меню");
+                    Menu.ShowPick("Просмотр товаров", "Корзина", "Выбрать пункт выдачи", "История заказов");
                     switch (Console.ReadKey().Key)
                     {
                         case ConsoleKey.D1:
@@ -400,7 +403,8 @@ namespace pomogitee
             if (CurrentUser.Office == null)
             {
                 Console.WriteLine("Сначала выберите пункт выдачи!");
-                ChooseOffice();
+
+                CurrentUser.Office = ChooseOffice();
                 return;
             }
 
@@ -451,7 +455,7 @@ namespace pomogitee
                     if (CurrentUser.Office == null)
                     {
                         Console.WriteLine("Сначала выберите пункт выдачи!");
-                        ChooseOffice();
+                        CurrentUser.Office = ChooseOffice();
                         return;
                     }
 
@@ -517,14 +521,19 @@ namespace pomogitee
             foreach (Orders o in orders)
             {
                 List<OrderGoods> ordersGoods = ogs.Where(og => og.IdOrders == o.Id).ToList();
-                foreach (OrderGoods od in ordersGoods)
+
+                if (ordersGoods.Count != 0)
                 {
-                    Console.WriteLine($"Заказ {o.Id} | " +
-                        $"Товар: {Core.Context.Goods.ToList().First(g => g.Id == od.IdGoods).Name} | " +
-                        $"{od.Quantity} шт.");
+                    Console.WriteLine($"Заказ {o.Id}:");
+
+                    foreach (OrderGoods od in ordersGoods)
+                    {
+                        Console.WriteLine($"    {Core.Context.Goods.ToList().First(g => g.Id == od.IdGoods).Name} | " +
+                            $"{od.Quantity} шт.");
+                    }
                 }
             }
-
+            Console.ReadKey();
             StartMenu();
         }
         
@@ -556,6 +565,7 @@ namespace pomogitee
                 CurrentUser.Office = selectedOffice;
                 Core.Context.SaveChanges();
                 Console.WriteLine("Пункт выдачи выбран!");
+                
             }
             else
             {

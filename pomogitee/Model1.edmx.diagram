@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="77249ba287ad4b079be121dda8ee8274" Name="Diagram1">
+      <Diagram DiagramId="2bedbdc21c1143e29a414be0cb853334" Name="Diagram1">
         <EntityTypeShape EntityType="GMWOGGModel.Cart" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />
         <EntityTypeShape EntityType="GMWOGGModel.Goods" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="GMWOGGModel.Office" Width="1.5" PointX="0.75" PointY="3.25" IsExpanded="true" />
