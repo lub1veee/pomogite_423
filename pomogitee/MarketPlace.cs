@@ -24,8 +24,6 @@ namespace pomogitee
                             SignUp();
                             break;
                         case ConsoleKey.D2:
-
-
                             SignIn();
                             break;
                         case ConsoleKey.D3:
