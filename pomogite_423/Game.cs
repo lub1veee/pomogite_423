@@ -9,7 +9,6 @@ namespace pomogite_423
 {
     internal class Game
     {
-        private Random random = new();
         private int _currentTurn = 1;
         public static Game Instance;
 #pragma warning disable
@@ -22,7 +21,6 @@ namespace pomogite_423
             _combatManager = new CombatManager();
             InitializeGame();
             Player player = new(
-                random, 
                 new Armor("Рубашка", 100, 10), 
                 new Weapon("Кулаки", 100, 10)
             );
@@ -64,12 +62,12 @@ namespace pomogite_423
             if (_currentTurn % 10 == 0)
             {
                 _turnType = "БОЙ";
-                BossFight();
+                _combatManager.StartCombat(Factory.RandomBoss());
                 return;
             }
             else
             {
-                switch (random.Next(2))
+                switch (StaticRandom.random.Next(2))
                 {
                     case 0:
                         _turnType = "СУНДУК";
@@ -77,7 +75,7 @@ namespace pomogite_423
                         break;
                     case 1:
                         _turnType = "БОЙ";
-                        StartFight();
+                        _combatManager.StartCombat(Factory.RandomMonster());
                         break;
                     default:
                         break;
@@ -89,7 +87,7 @@ namespace pomogite_423
         {
             ShowTurnInfo();
             Console.Write("Вы нашли сундук!\nСодержимое: ");
-            switch (random.Next(3))
+            switch (StaticRandom.random.Next(3))
             {
                 case 0:
                     Console.Write($"Оружие\n");
@@ -109,27 +107,11 @@ namespace pomogite_423
             Program.WaitForPlayer();
         }
 
-        private void StartFight()
-        {
-            switch (random.Next(3))
-            {
-                case 0:
-                    _combatManager.StartCombat(new Mage(random));
-                    break;
-                case 1:
-                    _combatManager.StartCombat(new Goblin(random));
-                    break;
-                case 2:
-                    _combatManager.StartCombat(new Skeleton(random));
-                    break;
-                default:
-                    break;
-            }
-        }
+        
 
         private void ChooseWeapon()
         {
-            Weapon weapon = Weapon.AllWeapon[random.Next(5)];
+            Weapon weapon = Weapon.AllWeapon[StaticRandom.random.Next(5)];
             weapon.Info();
             Console.WriteLine("Взять оружие - Y\nПойти дальше - N");
             while (true)
@@ -150,7 +132,7 @@ namespace pomogite_423
 
         private void ChooseArmor()
         {
-            Armor armor = Armor.AllArmor[random.Next(5)];
+            Armor armor = Armor.AllArmor[StaticRandom.random.Next(5)];
             armor.Info();
             Console.WriteLine("Взять броню - Y\nПойти дальше - N");
             while (true)
@@ -172,30 +154,6 @@ namespace pomogite_423
         {
             Player.Instance.Heal();
             Player.Instance.ShowStats();
-        }
-
-
-
-        private void BossFight()
-        {
-            switch (random.Next(4))
-            {
-                case 0:
-                    _combatManager.StartCombat(new ArchimageCPP(random));
-                    break;
-                case 1:
-                    _combatManager.StartCombat(new Kovalsky(random));
-                    break;
-                case 2:
-                    _combatManager.StartCombat(new PestovCMM(random));
-                    break;
-                case 3:
-                    _combatManager.StartCombat(new VVG(random));
-                    break;
-                default:
-                    break;
-                    
-            }
         }
     }
 }

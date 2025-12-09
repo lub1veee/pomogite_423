@@ -8,7 +8,7 @@ namespace pomogite_423
 {
     internal class Skeleton : Enemy
     {
-        public Skeleton(Random random) : base(random)
+        public Skeleton()
         {
             Name = "Скелет";
             Hp = 25;

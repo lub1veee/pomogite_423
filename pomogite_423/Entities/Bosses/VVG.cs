@@ -8,9 +8,9 @@ namespace pomogite_423
 {
     internal class VVG : Goblin
     {
-        public VVG(Random random) : base(random)
+        public VVG()
         {
-            Goblin goblin = new Goblin(random);
+            Goblin goblin = new Goblin();
             Name = "Босс VVG";
             Hp = (int)(goblin.Hp * 2.0);
             Damage = (int)(goblin.Damage * 1.5);

@@ -9,7 +9,7 @@ namespace pomogite_423
     internal class Mage : Enemy
     {
         protected double _freezeChance;
-        public Mage(Random random) : base(random)
+        public Mage()
         {
             Name = "Маг";
             Hp = 23;
@@ -20,7 +20,7 @@ namespace pomogite_423
 
         public override void AttackPlayer()
         {
-            if(_random.NextDouble() <= _freezeChance)
+            if(StaticRandom.random.NextDouble() <= _freezeChance)
             {
                 Player.Instance.IsFreezed = true;
                 Console.WriteLine($"{Name} заморозил вас!\nВы пропустите ход!\n{Program.Separator}");

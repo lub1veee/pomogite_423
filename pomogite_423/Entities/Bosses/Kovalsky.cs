@@ -8,9 +8,9 @@ namespace pomogite_423
 {
     internal class Kovalsky : Skeleton
     {
-        public Kovalsky(Random random) : base(random) 
+        public Kovalsky()
         {
-            Skeleton skeleton = new Skeleton(random);
+            Skeleton skeleton = new Skeleton();
             Name = "Босс Ковальский";
             Hp = (int)(skeleton.Hp * 2.5);
             Damage = (int)(skeleton.Damage * 1.3);

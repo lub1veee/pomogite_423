@@ -9,9 +9,9 @@ namespace pomogite_423
     internal class PestovCMM : Skeleton
     {
         private double _freezeChance;
-        public PestovCMM(Random random) : base(random)
+        public PestovCMM()
         {
-            Skeleton pestov = new Skeleton(random);
+            Skeleton pestov = new Skeleton();
             Name = "Босс Пестов С--";
             Hp = (int)(pestov.Hp * 1.3);
             Damage = (int)(pestov.Damage * 1.8);
@@ -23,7 +23,7 @@ namespace pomogite_423
         public override void AttackPlayer()
         {
             Player.Instance.BrakeArmorAndGetDamage(Damage);
-            if (_random.NextDouble() <= _freezeChance)
+            if (StaticRandom.random.NextDouble() <= _freezeChance)
             {
                 Player.Instance.IsFreezed = true;
                 Console.WriteLine($"{Name} заморозил вас!\nВы пропустите ход!\n{Program.Separator}");

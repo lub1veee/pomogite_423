@@ -8,9 +8,9 @@ namespace pomogite_423
 {
     internal class ArchimageCPP : Mage
     {
-        public ArchimageCPP(Random random) : base(random)
+        public ArchimageCPP() 
         {
-            Mage mage = new Mage(random);
+            Mage mage = new Mage();
             Name = "Босс Архимаг С++";
             Hp = (int)(mage.Hp * 1.8);
             Damage = (int)(mage.Damage * 1.6);

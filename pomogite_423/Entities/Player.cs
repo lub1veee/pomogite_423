@@ -1,4 +1,5 @@
-﻿using System;
+﻿using pomogite_423.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,14 +18,12 @@ namespace pomogite_423
 
         public bool IsFreezed = false;
 
-        public Player(Random random, Armor armorPlayer, Weapon weaponPlayer, int hp = 100, int damage = 5) : base(random, hp, damage)
+        public Player(Armor armorPlayer, Weapon weaponPlayer, int hp = 100, int damage = 5) : base(hp, damage)
         {
             Hp = hp;
             Damage = damage;
             ArmorPlayer = armorPlayer;
             WeaponPlayer = weaponPlayer;
-
-            _random = random;
             Initialize();
         }
 
@@ -68,10 +67,15 @@ namespace pomogite_423
 
         public void AttackEnemy(Enemy enemy)
         {
+            int damage = WeaponPlayer.Damage;
+            if(enemy is Slime)
+            {
+                damage -= 2;
+            }
             Console.WriteLine($"АТАКА\n" + $"{Program.Separator}\n" +
-                $"Нанесенный урон: " +
-                $"{enemy.GetDamage(WeaponPlayer.Damage)}"
-                );
+                    $"Нанесенный урон: " +
+                    $"{enemy.GetDamage(damage)}"
+                    );
             Console.WriteLine($"{enemy.Name} - Оставшееся здоровье: {enemy.Hp}");
             WeaponPlayer.Durability--;
         }
