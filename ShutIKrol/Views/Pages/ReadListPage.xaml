@@ -13,10 +13,10 @@
         <TextBlock Grid.Row="0" Text="Списки книг" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
-            <Button Content="В планах" Tag="1" Click="BtnSwitchList_Click" Margin="0,0,5,0" Padding="8,4"/>
-            <Button Content="Читаю" Tag="2" Click="BtnSwitchList_Click" Margin="0,0,5,0" Padding="8,4"/>
-            <Button Content="Прочитано" Tag="3" Click="BtnSwitchList_Click" Margin="0,0,5,0" Padding="8,4"/>
-            <Button Content="Заброшено" Tag="4" Click="BtnSwitchList_Click" Padding="8,4"/>
+            <Button x:Name="b1" Click="BtnSwitchList_Click" Margin="0,0,5,0" Padding="8,4"/>
+            <Button x:Name="b2" Click="BtnSwitchList_Click" Margin="0,0,5,0" Padding="8,4"/>
+            <Button x:Name="b3" Click="BtnSwitchList_Click" Margin="0,0,5,0" Padding="8,4"/>
+            <Button x:Name="b4" Click="BtnSwitchList_Click" Padding="8,4"/>
         </StackPanel>
 
         <Grid Grid.Row="2" Margin="0,0,0,10">
@@ -27,15 +27,14 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBox x:Name="TxtSearch" Grid.Column="0" Margin="0,0,5,0" 
-                     TextChanged="Filter_Changed" VerticalContentAlignment="Center"/>
+            <TextBox x:Name="TxtSearch" Grid.Column="0" Margin="0,0,5,0" VerticalContentAlignment="Center"/>
             <TextBlock Grid.Column="1" Text="Сортировка:" VerticalAlignment="Center" Margin="5,0,5,0"/>
-            <ComboBox Grid.Column="2" x:Name="CmbSort" SelectionChanged="Filter_Changed" Width="120">
+            <ComboBox Grid.Column="2" x:Name="CmbSort" Width="120">
                 <ComboBoxItem Content="По названию" IsSelected="True"/>
                 <ComboBoxItem Content="По оценке"/>
             </ComboBox>
             <TextBlock Grid.Column="3" Text="Жанр:" VerticalAlignment="Center" Margin="10,0,5,0"/>
-            <ComboBox Grid.Column="4" x:Name="CmbGenre" SelectionChanged="Filter_Changed" Width="120"/>
+            <ComboBox Grid.Column="4" x:Name="CmbGenre" Width="120"/>
         </Grid>
 
         <ScrollViewer Grid.Row="3">

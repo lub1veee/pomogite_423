@@ -19,7 +19,19 @@ namespace ShutIKrol.Views.Pages
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-            if ((string)CmbStatus.SelectedItem == "") DialogResult=false;
+            if ((string)CmbStatus.SelectedItem == "")
+            {
+                var readlist = Core.Context.ReadList.FirstOrDefault(rl => rl.UserId == Session.CurrentUser.Id && rl.BookId == _bookId);
+                if (readlist != null)
+                {
+                    Core.Context.ReadList.Remove(readlist);
+                    Core.Context.SaveChanges();
+                    MessageBox.Show("Книга удалена из списка!");
+                    DialogResult = true;
+                }
+                else DialogResult = false;
+                return;
+            }
             var readl = new ReadList
             {
                 BookId = _bookId,

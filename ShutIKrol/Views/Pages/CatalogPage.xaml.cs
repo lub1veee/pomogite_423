@@ -47,15 +47,7 @@ namespace ShutIKrol.Views.Pages
                 .Where(b => !b.IsFrozen)
                 .ToList();
 
-            _allBooks = books.Select(b => new BookViewModel
-            {
-                Id = b.Id,
-                Name = b.Name,
-                CoverPath = b.CoverPath,
-                AuthorName = b.Users.Name,
-                AvgRating = b.Reviews.Any() ? $"Оценка: {b.Reviews.Average(r => r.Rate):F1}" : "Нет оценок",
-                Genres = b.Genres.Select(g => g.Id).ToList()
-            }).ToList();
+            _allBooks = books.Select(b => new BookViewModel(b)).ToList();
 
             ApplyFilters();
         }
@@ -118,7 +110,9 @@ namespace ShutIKrol.Views.Pages
             Name = book.Name;
             CoverPath = book.CoverPath;
             AuthorName = book.Users.Name;
-            AvgRating = book.Reviews.Select(r => r.Rate);
+            AvgRating = book.Reviews.Any() ? $"Оценка: {book.Reviews.Average(r => r.Rate)}" : "Нет оценок";
+            Genres = book.Genres.Select(g => g.Id).ToList();
+            StatusId = book.ReadList.FirstOrDefault(rl => rl.UserId == Session.CurrentUser.Id)?.StatusId;
         }
         public int Id { get; set; }
         public string Name { get; set; } = "";
@@ -126,5 +120,6 @@ namespace ShutIKrol.Views.Pages
         public string AuthorName { get; set; } = "";
         public string AvgRating { get; set; } = "";
         public List<int> Genres { get; set; } = new List<int>();
+        public int? StatusId { get; set; }
     }
 }
