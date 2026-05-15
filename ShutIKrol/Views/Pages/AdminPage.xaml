@@ -1,0 +1,139 @@
+﻿<Page x:Class="ShutIKrol.Views.Pages.AdminPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Администрирование">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Администрирование" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
+
+        <TabControl Grid.Row="1">
+            <!-- Жалобы -->
+            <TabItem Header="Жалобы">
+                <Grid Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0" Content="Обновить" Click="BtnRefreshComplaints_Click" HorizontalAlignment="Left" Margin="0,0,0,8" Padding="8,4"/>
+                    <DataGrid Grid.Row="1" x:Name="ComplaintsGrid" AutoGenerateColumns="False" IsReadOnly="True"
+                              CanUserAddRows="False" SelectionMode="Single">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
+                            <DataGridTextColumn Header="От" Binding="{Binding FromUser}" Width="120"/>
+                            <DataGridTextColumn Header="Тип" Binding="{Binding TypeText}" Width="100"/>
+                            <DataGridTextColumn Header="Причина" Binding="{Binding ReasonText}" Width="*"/>
+                            <DataGridTemplateColumn Header="Действия" Width="160">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Content="Принять" Tag="{Binding Id}" Click="BtnAcceptComplaint_Click" Margin="2" Padding="5,2"/>
+                                            <Button Content="Отклонить" Tag="{Binding Id}" Click="BtnRejectComplaint_Click" Margin="2" Padding="5,2"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+            <!-- Заявки -->
+            <TabItem Header="Заявки">
+                <Grid Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0" Content="Обновить" Click="BtnRefreshRequests_Click" HorizontalAlignment="Left" Margin="0,0,0,8" Padding="8,4"/>
+                    <DataGrid Grid.Row="1" x:Name="RequestsGrid" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
+                            <DataGridTextColumn Header="Тип" Binding="{Binding TypeName}" Width="180"/>
+                            <DataGridTextColumn Header="Пользователь" Binding="{Binding UserName}" Width="150"/>
+                            <DataGridTextColumn Header="Комментарий" Binding="{Binding Comment}" Width="*"/>
+                            <DataGridTemplateColumn Header="Действия" Width="160">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Content="Принять" Tag="{Binding Id}" Click="BtnAcceptRequest_Click" Margin="2" Padding="5,2"/>
+                                            <Button Content="Отклонить" Tag="{Binding Id}" Click="BtnRejectRequest_Click" Margin="2" Padding="5,2"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+            <!-- Замороженные -->
+            <TabItem Header="Замороженные">
+                <ScrollViewer>
+                    <StackPanel Margin="5">
+                        <TextBlock Text="Замороженные книги" FontWeight="Bold" Margin="0,0,0,5"/>
+                        <DataGrid x:Name="FrozenBooksGrid" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" Height="150" Margin="0,0,0,15">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
+                                <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="*"/>
+                                <DataGridTextColumn Header="Автор" Binding="{Binding AuthorName}" Width="150"/>
+                                <DataGridTemplateColumn Width="120">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Разморозить" Tag="{Binding Id}" Click="BtnUnfreezeBook_Click" Padding="5,2"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <TextBlock Text="Замороженные пользователи" FontWeight="Bold" Margin="0,0,0,5"/>
+                        <DataGrid x:Name="FrozenUsersGrid" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" Height="150" Margin="0,0,0,15">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
+                                <DataGridTextColumn Header="Имя" Binding="{Binding Name}" Width="*"/>
+                                <DataGridTextColumn Header="Логин" Binding="{Binding Login}" Width="120"/>
+                                <DataGridTemplateColumn Width="120">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Разморозить" Tag="{Binding Id}" Click="BtnUnfreezeUser_Click" Padding="5,2"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- Пользователи -->
+            <TabItem Header="Пользователи">
+                <Grid Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0" Content="Обновить" Click="BtnRefreshUsers_Click" HorizontalAlignment="Left" Margin="0,0,0,8" Padding="8,4"/>
+                    <DataGrid Grid.Row="1" x:Name="UsersGrid" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
+                            <DataGridTextColumn Header="Имя" Binding="{Binding Name}" Width="*"/>
+                            <DataGridTextColumn Header="Логин" Binding="{Binding Login}" Width="120"/>
+                            <DataGridTextColumn Header="Роль" Binding="{Binding RoleName}" Width="100"/>
+                            <DataGridTemplateColumn Header="Действия" Width="220">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Изменить" Tag="{Binding Id}" Click="ChangeUser_Click" Margin="2" Padding="5,2"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Page>
