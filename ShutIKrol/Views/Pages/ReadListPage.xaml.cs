@@ -40,12 +40,8 @@ namespace ShutIKrol.Views.Pages
             var db = Core.Context;
             var userId = Session.CurrentUser.Id;
 
-            var items = db.ReadList
-                .Include(rl => rl.Books.Users)
-                .Include(rl => rl.Books.Reviews)
-                .Include(rl => rl.Books.Genres)
-                .Where(rl => rl.UserId == userId && rl.StatusId == _currentStatusId)
-                .ToList();
+            var readLists = db.ReadList.Where(rl => rl.UserId == userId).ToList();
+            _allBooks = readLists.Select(rl => rl.Books).ToList();
 
             _allBooks = items.Select(rl => new BookViewModel
             {

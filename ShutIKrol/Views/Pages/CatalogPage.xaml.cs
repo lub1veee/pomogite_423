@@ -4,6 +4,8 @@ using System.Runtime.Remoting.Contexts;
 using System.Windows;
 using System.Windows.Controls;
 using System.Data.Entity;
+using ShutIKrol.Database;
+using System;
 
 namespace ShutIKrol.Views.Pages
 {
@@ -110,6 +112,14 @@ namespace ShutIKrol.Views.Pages
 
     public class BookViewModel
     {
+        public BookViewModel(Books book)
+        {
+            Id = book.Id;
+            Name = book.Name;
+            CoverPath = book.CoverPath;
+            AuthorName = book.Users.Name;
+            AvgRating = book.Reviews.Select(r => r.Rate);
+        }
         public int Id { get; set; }
         public string Name { get; set; } = "";
         public string CoverPath { get; set; }

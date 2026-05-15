@@ -10,12 +10,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Text="Выберите список:" Margin="0,0,0,8"/>
-        <ComboBox Grid.Row="1" x:Name="CmbStatus" Margin="0,0,0,12">
-            <ComboBoxItem Content="В планах" Tag="1" IsSelected="True"/>
-            <ComboBoxItem Content="Читаю" Tag="2"/>
-            <ComboBoxItem Content="Прочитано" Tag="3"/>
-            <ComboBoxItem Content="Заброшено" Tag="4"/>
-        </ComboBox>
+        <ComboBox Grid.Row="1" x:Name="CmbStatus" Margin="0,0,0,12"></ComboBox>
         <Button Grid.Row="2" Content="Сохранить" Click="BtnSave_Click" HorizontalAlignment="Center" Padding="15,5"/>
     </Grid>
 </Window>

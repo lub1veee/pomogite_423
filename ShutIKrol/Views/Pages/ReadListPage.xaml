@@ -12,7 +12,6 @@
 
         <TextBlock Grid.Row="0" Text="Списки книг" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
 
-        <!-- Переключение списков -->
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
             <Button Content="В планах" Tag="1" Click="BtnSwitchList_Click" Margin="0,0,5,0" Padding="8,4"/>
             <Button Content="Читаю" Tag="2" Click="BtnSwitchList_Click" Margin="0,0,5,0" Padding="8,4"/>
@@ -20,7 +19,6 @@
             <Button Content="Заброшено" Tag="4" Click="BtnSwitchList_Click" Padding="8,4"/>
         </StackPanel>
 
-        <!-- Фильтры -->
         <Grid Grid.Row="2" Margin="0,0,0,10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
