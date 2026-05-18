@@ -69,7 +69,6 @@ namespace ShutIKrol.Views
                 return;
             }
 
-            // Default role - Читатель (Id=1, assumed)
             var readerRole = db.Roles.FirstOrDefault(r => r.Name == "Читатель") ?? db.Roles.First();
 
             var newUser = new Users

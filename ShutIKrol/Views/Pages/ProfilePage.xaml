@@ -39,7 +39,6 @@
                 </Grid>
             </GroupBox>
 
-            <!-- Заморозка -->
             <GroupBox Grid.Row="2" x:Name="FrozenGroup" Header="⚠ Аккаунт заморожен" Margin="0,0,0,10" Visibility="Collapsed">
                 <StackPanel Margin="5">
                     <TextBlock x:Name="TxtFreezeReason" TextWrapping="Wrap" Margin="0,0,0,8"/>
@@ -47,7 +46,6 @@
                 </StackPanel>
             </GroupBox>
 
-            <!-- Заявка на автора -->
             <GroupBox Grid.Row="3" Header="Роль автора" Margin="0,0,0,10">
                 <StackPanel Margin="5">
                     <TextBlock x:Name="TxtAuthorStatus" TextWrapping="Wrap" Margin="0,0,0,8"/>
@@ -56,7 +54,6 @@
                 </StackPanel>
             </GroupBox>
 
-            <!-- Отзывы пользователя -->
             <GroupBox Grid.Row="4" Header="Мои отзывы" Margin="0,0,0,10">
                 <ItemsControl x:Name="ReviewsList">
                     <ItemsControl.ItemTemplate>

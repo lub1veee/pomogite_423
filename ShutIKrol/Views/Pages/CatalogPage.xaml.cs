@@ -21,7 +21,7 @@ namespace ShutIKrol.Views.Pages
             CmbGenre.SelectionChanged += CmbGenre_SelectionChanged;
             TxtSearch.TextChanged += TxtSearch_TextChanged;
 
-            this.Loaded += (s,e) =>
+            this.Loaded += (s, e) =>
             {
                 LoadGenres();
                 LoadBooks();
@@ -51,29 +51,31 @@ namespace ShutIKrol.Views.Pages
 
             ApplyFilters();
         }
-
         private void ApplyFilters()
         {
-            if (BooksPanel == null)
-                return;
+            if (BooksPanel == null) return;
 
             var search = TxtSearch.Text.Trim().ToLower();
             var result = _allBooks.AsEnumerable();
 
+            // Фильтр по тексту поиска (название или автор)
             if (!string.IsNullOrEmpty(search))
-                result = result.Where(b => b.Name.ToLower().Contains(search) || b.AuthorName.ToLower().Contains(search));
+                result = result.Where(b =>
+                    b.Name.ToLower().Contains(search) ||
+                    b.AuthorName.ToLower().Contains(search));
 
-            if (CmbGenre?.SelectedItem is ComboBoxItem ci && ci.Tag is int gid && gid > 0)
+            // Фильтр по жанру (0 = все жанры)
+            if (CmbGenre?.SelectedItem is ComboBoxItem ci
+                && ci.Tag is int gid && gid > 0)
                 result = result.Where(b => b.Genres.Contains(gid));
 
-            if (CmbSort.SelectedIndex == 1)
-                result = result.OrderByDescending(b => b.AvgRating);
-            else
-                result = result.OrderBy(b => b.Name);
+            // Сортировка: по оценке или по алфавиту
+            result = CmbSort.SelectedIndex == 1
+                ? result.OrderByDescending(b => b.AvgRating)
+                : result.OrderBy(b => b.Name);
 
-            BooksPanel.ItemsSource = result?.ToList();
+            BooksPanel.ItemsSource = result.ToList();
         }
-
         private void TxtSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             SearchHint.Visibility = string.IsNullOrEmpty(TxtSearch.Text) ? Visibility.Visible : Visibility.Collapsed;
@@ -101,7 +103,6 @@ namespace ShutIKrol.Views.Pages
             }
         }
     }
-
     public class BookViewModel
     {
         public BookViewModel(Books book)
@@ -110,16 +111,31 @@ namespace ShutIKrol.Views.Pages
             Name = book.Name;
             CoverPath = book.CoverPath;
             AuthorName = book.Users.Name;
-            AvgRating = book.Reviews.Any() ? $"Оценка: {book.Reviews.Average(r => r.Rate)}" : "Нет оценок";
+
+            // Средняя оценка из всех отзывов книги
+            AvgRating = book.Reviews.Any()
+                ? $"Оценка: {book.Reviews.Average(r => r.Rate):F1}"
+                : "Нет оценок";
+
+            // ID жанров для фильтрации в каталоге
             Genres = book.Genres.Select(g => g.Id).ToList();
-            StatusId = book.ReadList.FirstOrDefault(rl => rl.UserId == Session.CurrentUser.Id)?.StatusId;
+
+            // Статус книги в списке текущего пользователя (null = не добавлена)
+            StatusId = book.ReadList
+                .FirstOrDefault(rl => rl.UserId == Session.CurrentUser.Id)
+                ?.StatusId;
         }
+
         public int Id { get; set; }
         public string Name { get; set; } = "";
         public string CoverPath { get; set; }
         public string AuthorName { get; set; } = "";
         public string AvgRating { get; set; } = "";
+
+        // Список идентификаторов жанров для фильтрации
         public List<int> Genres { get; set; } = new List<int>();
+
+        // null — книга не в списке пользователя
         public int? StatusId { get; set; }
     }
 }

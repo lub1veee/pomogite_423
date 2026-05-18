@@ -50,7 +50,6 @@ namespace ShutIKrol.Views.Pages
             {
                 if (item == null) continue;
             }
-            // Select genres
             foreach (var genre in book.Genres)
             {
                 foreach (var item in GenresList.Items)
@@ -85,7 +84,6 @@ namespace ShutIKrol.Views.Pages
             {
                 var ch = _chapters.FirstOrDefault(c => c.Number == num);
                 if (ch != null) _chapters.Remove(ch);
-                // Renumber
                 for (int i = 0; i < _chapters.Count; i++)
                 {
                     _chapters[i].Number = i + 1;
@@ -119,7 +117,6 @@ namespace ShutIKrol.Views.Pages
             book.Name = TxtName.Text;
             book.CoverPath = string.IsNullOrWhiteSpace(TxtCoverPath.Text) ? null : TxtCoverPath.Text;
 
-            // Genres
             foreach (var selectedItem in GenresList.SelectedItems)
             {
                 if (selectedItem is Genres g)
@@ -131,7 +128,6 @@ namespace ShutIKrol.Views.Pages
 
             db.SaveChanges();
 
-            // Chapters - remove old, add new
             if (_bookId.HasValue)
             {
                 var oldChapters = db.Chapters.Where(c => c.BookId == _bookId.Value).ToList();

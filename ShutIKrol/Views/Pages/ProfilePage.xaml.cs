@@ -38,7 +38,6 @@ namespace ShutIKrol.Views.Pages
                 TxtFreezeReason.Text = "Ваш аккаунт был заморожен администратором.";
             }
 
-            // Check for existing author request
             var existingRequest = db.Requests
                 .Include(r => r.RequestTypes)
                 .Where(r => r.UserId == user.Id)
