@@ -81,7 +81,6 @@ namespace ShutIKrol.Views.Pages
         private void BtnComplainAuthor_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Жалоба на автора отправлена.", "Жалоба");
-            // Можно расширить: отдельный тип жалобы
         }
 
         private void BtnFreezeBook_Click(object sender, RoutedEventArgs e)
@@ -142,12 +141,12 @@ namespace ShutIKrol.Views.Pages
             if (sender is Button btn && btn.Tag is int reviewId)
             {
                 var db = Core.Context;
-                var review = db.Reviews.Find(reviewId);
+                var review = db.Reviews.First(r => r.Id == reviewId);
                 if (review != null)
                 {
-                    review.IsFrozen = !review.IsFrozen;
+                    review.IsFrozen = review.IsFrozen == null ? true : !review.IsFrozen;
                     db.SaveChanges();
-                    MessageBox.Show(review.IsFrozen != null || review.IsFrozen == true ? "Отзыв заморожен." : "Отзыв разморожен.");
+                    MessageBox.Show(review.IsFrozen == true? "Отзыв заморожен." : "Отзыв разморожен.");
                     LoadBook();
                 }
             }

@@ -11,7 +11,6 @@
         <TextBlock Grid.Row="0" Text="Администрирование" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
 
         <TabControl Grid.Row="1">
-            <!-- Жалобы -->
             <TabItem Header="Жалобы">
                 <Grid Margin="5">
                     <Grid.RowDefinitions>
@@ -41,7 +40,6 @@
                 </Grid>
             </TabItem>
 
-            <!-- Заявки -->
             <TabItem Header="Заявки">
                 <Grid Margin="5">
                     <Grid.RowDefinitions>
@@ -70,7 +68,6 @@
                 </Grid>
             </TabItem>
 
-            <!-- Замороженные -->
             <TabItem Header="Замороженные">
                 <ScrollViewer>
                     <StackPanel Margin="5">
@@ -109,7 +106,6 @@
                 </ScrollViewer>
             </TabItem>
 
-            <!-- Пользователи -->
             <TabItem Header="Пользователи">
                 <Grid Margin="5">
                     <Grid.RowDefinitions>

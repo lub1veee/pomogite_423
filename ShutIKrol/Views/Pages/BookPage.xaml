@@ -19,27 +19,21 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <!-- Обложка -->
             <Image x:Name="ImgCover" Grid.Row="0" Grid.RowSpan="4" Grid.Column="0"
                    Height="280" Width="180" Stretch="UniformToFill" VerticalAlignment="Top" Margin="0,0,15,0"/>
 
-            <!-- Название -->
             <TextBlock x:Name="TxtTitle" Grid.Row="0" Grid.Column="1" 
                        FontSize="20" FontWeight="Bold" TextWrapping="Wrap" Margin="0,0,0,8"/>
 
-            <!-- Автор -->
             <TextBlock x:Name="TxtAuthor" Grid.Row="1" Grid.Column="1" 
                        FontSize="14" Margin="0,0,0,8"/>
 
-            <!-- Жанры -->
             <TextBlock x:Name="TxtGenres" Grid.Row="2" Grid.Column="1" 
                        FontSize="13" Foreground="Gray" Margin="0,0,0,8" TextWrapping="Wrap"/>
 
-            <!-- Описание -->
             <TextBlock x:Name="TxtDescription" Grid.Row="3" Grid.Column="1" 
                        TextWrapping="Wrap" Margin="0,0,0,10"/>
 
-            <!-- Кнопки действий -->
             <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0,5,0,5">
                 <Button Content="Читать" Click="BtnRead_Click" Margin="0,0,8,0" Padding="8,4"/>
                 <Button Content="Жалоба на книгу" Click="BtnComplainBook_Click" Margin="0,0,8,0" Padding="8,4"/>
@@ -47,7 +41,6 @@
                 <Button x:Name="BtnFreezeBook" Content="Заморозить книгу" Click="BtnFreezeBook_Click" Margin="0,0,8,0" Padding="8,4" Visibility="Collapsed"/>
             </StackPanel>
 
-            <!-- Оставить отзыв -->
             <GroupBox Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Header="Оставить отзыв" Margin="0,10,0,10">
                 <StackPanel Margin="5">
                     <TextBlock Text="Оценка (1-10):"/>
@@ -58,7 +51,6 @@
                 </StackPanel>
             </GroupBox>
 
-            <!-- Отзывы -->
             <GroupBox Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Header="Отзывы" Margin="0,0,0,10">
                 <ItemsControl x:Name="ReviewsList">
                     <ItemsControl.ItemTemplate>

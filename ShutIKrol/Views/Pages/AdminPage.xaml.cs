@@ -116,14 +116,12 @@ namespace ShutIKrol.Views.Pages
                 if (r != null)
                 {
                     r.IsApproved = true;
-                    // If author request - assign role
                     if (r.RequestTypes.TypeName == "Роль автора")
                     {
                         var authorRole = db.Roles.FirstOrDefault(ro => ro.Name == "Автор");
                         if (authorRole != null)
                             r.Users.RoleId = authorRole.Id;
                     }
-                    // If unfreeze account request
                     if (r.RequestTypes.TypeName == "Снятие заморозки аккаунта")
                         r.Users.IsFrozen = false;
 
